@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityCellCollectionViewCell" id="Ksi-UO-QPH" customClass="CityCellCollectionViewCell" customModule="WetherApI2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ksi-UO-QPH" id="6jG-o1-Yy2">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXm-MP-NH6">
+                        <rect key="frame" x="0.0" y="0.0" width="121" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="121" id="sFS-Fp-4JQ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hir-pt-G8I">
+                        <rect key="frame" x="118" y="0.0" width="135" height="43.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkL-tO-ehk">
+                        <rect key="frame" x="253" y="0.0" width="122" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="122" id="Ewn-g9-b21"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CXm-MP-NH6" firstAttribute="top" secondItem="6jG-o1-Yy2" secondAttribute="top" id="7Ah-Dz-o7a"/>
+                    <constraint firstItem="CXm-MP-NH6" firstAttribute="firstBaseline" secondItem="Hir-pt-G8I" secondAttribute="firstBaseline" id="9Vu-98-Ebm"/>
+                    <constraint firstItem="FkL-tO-ehk" firstAttribute="leading" secondItem="Hir-pt-G8I" secondAttribute="trailing" id="DkD-Ia-2Dp"/>
+                    <constraint firstItem="CXm-MP-NH6" firstAttribute="centerY" secondItem="6jG-o1-Yy2" secondAttribute="centerY" id="GHT-QB-HOU"/>
+                    <constraint firstAttribute="trailing" secondItem="FkL-tO-ehk" secondAttribute="trailing" id="KmH-37-ix4"/>
+                    <constraint firstItem="Hir-pt-G8I" firstAttribute="firstBaseline" secondItem="FkL-tO-ehk" secondAttribute="firstBaseline" id="M7f-xI-uUA"/>
+                    <constraint firstItem="Hir-pt-G8I" firstAttribute="leading" secondItem="6jG-o1-Yy2" secondAttribute="leadingMargin" constant="98" id="Mpe-bp-x9M"/>
+                    <constraint firstItem="CXm-MP-NH6" firstAttribute="baseline" secondItem="Hir-pt-G8I" secondAttribute="baseline" id="rhw-DM-C7d"/>
+                    <constraint firstItem="Hir-pt-G8I" firstAttribute="baseline" secondItem="FkL-tO-ehk" secondAttribute="baseline" id="w1d-aJ-K9m"/>
+                    <constraint firstItem="CXm-MP-NH6" firstAttribute="leading" secondItem="6jG-o1-Yy2" secondAttribute="leading" id="xhw-Ta-9BO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cityLabel" destination="Hir-pt-G8I" id="d7l-O3-2F3"/>
+                <outlet property="countryLable" destination="CXm-MP-NH6" id="UwU-Uv-x9D"/>
+                <outlet property="temperature" destination="FkL-tO-ehk" id="qbd-bm-bD3"/>
+            </connections>
+            <point key="canvasLocation" x="400.72463768115944" y="141.29464285714286"/>
+        </tableViewCell>
+    </objects>
+</document>
