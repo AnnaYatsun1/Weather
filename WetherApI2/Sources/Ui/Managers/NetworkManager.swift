@@ -38,3 +38,21 @@ class NetworkManager<Value>: ObservableObject<NetworkManager.State> where Value:
             }.resume()
     }
 }
+
+
+class Parser<Object: Decodable> {
+    var decoded: Object?
+    func decoder(from data: Data?, conpletion: (Object?) -> ()) {
+        if let date = data {
+            do {    
+                decoded = try JSONDecoder().decode(Object.self, from: data!)
+            } catch {
+            print("error")
+            } 
+        } else {
+            print()
+        } 
+        conpletion(decoded) 
+        
+    }
+}

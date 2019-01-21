@@ -8,9 +8,23 @@
 
 import Foundation
 
-class Country: Decodable {
+class Country: Decodable, Equatable {
 
-    let name: String
-    let capital: String
-    var temperature: Double?
+    var name: String?
+    var country: String?
+    var weather: Weather?
+    
+    init(name: String, country: String, weather: Weather? = nil) {
+        self.name = name
+        self.country = country
+        self.weather = weather
+    }
+    
+    convenience init (apiJson: CountryAPI) {
+        self.init(name: apiJson.capital, country: apiJson.name)
+    }
+    
+    public static func == (lhs: Country, rhs: Country) -> Bool {
+        return lhs.name == rhs.name
+    }
 }
