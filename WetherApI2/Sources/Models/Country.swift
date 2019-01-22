@@ -11,17 +11,17 @@ import Foundation
 class Country: Decodable, Equatable {
 
     var name: String?
-    var country: String?
-    var weather: Weather?
+    var capital: String?
+    var weather: Weathers?
     
-    init(name: String, country: String, weather: Weather? = nil) {
+    init(name: String, capital: String, weather: Weathers? = nil) {
         self.name = name
-        self.country = country
+        self.capital = capital
         self.weather = weather
     }
     
     convenience init (apiJson: CountryAPI) {
-        self.init(name: apiJson.capital, country: apiJson.name)
+        self.init(name: apiJson.name, capital: apiJson.capital)
     }
     
     public static func == (lhs: Country, rhs: Country) -> Bool {

@@ -12,32 +12,32 @@ typealias Welcomes = [CountryAPI]
 
 public struct CountryAPI: Decodable {
     
-     enum CodingKeys: String, CodingKey {
-        case name
-        case topLevelDomain
-        case alpha2Code
-        case alpha3Code
-        case callingCodes
-        case capital
-        case altSpellings
-        case region
-        case subregion
-        case population
-        case latlng
-        case demonym
-        case area
-        case gini
-        case timezones
-        case borders
-        case nativeName
-        case numericCode
-        case currencies
-        case languages
-        case translations
-        case flag
-        case regionalBlocs
-        case cioc
-    }
+//     enum CodingKeys: String, CodingKey {
+//        case name
+//        case topLevelDomain
+//        case alpha2Code
+//        case alpha3Code
+//        case callingCodes
+//        case capital
+//        case altSpellings
+//        case region
+//        case subregion
+//        case population
+//        case latlng
+//        case demonym
+//        case area
+//        case gini
+//        case timezones
+//        case borders
+//        case nativeName
+//        case numericCode
+//        case currencies
+//        case languages
+//        case translations
+//        case flag
+//        case regionalBlocs
+//        case cioc
+//    }
     
     let name: String
     let topLevelDomain: [String]

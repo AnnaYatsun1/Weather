@@ -53,7 +53,7 @@ extension WeatherAPI {
     struct Main: Decodable {
         let temp: Double
         let pressure: Int
-        let  humidity: Int
+        let humidity: Int
         let tempMax: Double
         let tempMin: Double
         

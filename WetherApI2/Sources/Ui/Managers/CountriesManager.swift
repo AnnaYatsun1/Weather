@@ -21,13 +21,13 @@ class CountriesManager {
     }
     
     public func parsCountries() {
-        let urlCountry = URL(string: mainUrl)
+        let urlCountry = URL(string: self.mainUrl)
         
         urlCountry.do(self.parserCountries.requestData)
     }
     
     private func subscribe() {
-        _ = self.parserCountries.observer { state, _  in
+        _ = self.parserCountries.observer { state, _ in
             switch state {
             case .didStartLoading: return
             case .didLoad:

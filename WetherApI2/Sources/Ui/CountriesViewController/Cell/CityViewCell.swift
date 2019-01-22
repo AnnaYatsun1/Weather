@@ -16,10 +16,10 @@ class CityCellCollectionViewCell: UITableViewCell {
     @IBOutlet var data: UILabel?
     
     public func fill(country: Country) {
-        self.cityLabel?.text = country.name
-        self.countryLable?.text = country.country
-        self.temperature?.text = country.weather?.temperature.debugDescription
-        self.data?.text = country.weather?.timestamp.description
+        self.countryLable?.text = country.name
+        self.cityLabel?.text = country.capital
+        self.temperature?.text = country.weather?.main?.temperature.debugDescription
+//        self.data?.text = country.weather?.main?.temperature?.description
     }
     
     override func awakeFromNib() {

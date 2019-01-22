@@ -10,25 +10,24 @@ import UIKit
 
 class WeatherViewController: UIViewController, RootViewRepresentable {
     typealias RootView = WeatherView
-
-    public var capital: String?    
-    public var weatherManager = WeatherManager()  
+    
+    public var weatherManager = WeatherManager()
+    public var city = "Default"
+    
+    public var completion: Completion<Weathers>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Weather"
         
         self.weatherManager.completion = { weather in
             DispatchQueue.main.async {
-//                self.rootView?.infoLabel?.text = self.weatherManager.parsWeather(capital: )
+                self.rootView?.fillInTheData(data: weather, city : self.city)
+                self.completion?(weather)
             }
         }
         
-        self.weatherManager.parsWeather(capital: self.capital!)
+        self.weatherManager.parsWeather(capital: self.city)
     }
-//    func displayLable() {
-//        DispatchQueue.main.async {
-//            self.rootView?.infoLabel?.text = self.capital ?? ""
-//            self.rootView?.temperatura?.text = self.parser.model?.main?.temperature?.description ?? "" 
-//        }
-//    }
+    
 }

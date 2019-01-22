@@ -9,20 +9,17 @@
 import Foundation
 
 class WeatherManager {
-    let mainUrl = "https://api.openweathermap.org/data/2.5/weather?q="
-    let apiKey = "&units=metric&APPID=60cf95f166563b524e17c7573b54d7e3"
-    public var completion: Completion<Weather>?
+    public var completion: Completion<Weathers>?
     
-    private(set) var weather: Weather?
-    
-    private let parserWeather = NetworkManager<Weather>()
+   private(set) var weather: Weathers?
+    private let parserWeather = NetworkManager<Weathers>()
     
     init() {
         self.subscribe()
     }
     
     public func parsWeather(capital: String) {
-        let baseUrl = mainUrl + capital + apiKey
+        let baseUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + capital + "&units=metric&APPID=497c896b2c9814f2e7c9508a4c7ba762"
         let convertUrl = baseUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         convertUrl
@@ -36,8 +33,7 @@ class WeatherManager {
             case .didStartLoading: return
             case .didLoad:
                 self.parserWeather.model.do { weather in
-                    self.weather = weather
-                    
+                self.weather = weather
                     self.completion?(weather)
                 }
             case .didFailedWithError: return

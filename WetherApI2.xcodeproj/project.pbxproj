@@ -54,7 +54,6 @@
 		3FD6711421EF4E1500D31897 /* CountriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD6711321EF4E1500D31897 /* CountriesManager.swift */; };
 		3FD6711A21F093A200D31897 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD6711921F093A200D31897 /* WeatherAPI.swift */; };
 		3FD6711C21F0962D00D31897 /* CountryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD6711B21F0962D00D31897 /* CountryAPI.swift */; };
-		3FD6711E21F096E500D31897 /* MyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD6711D21F096E500D31897 /* MyModel.swift */; };
 		3FD6712021F5BA0900D31897 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD6711F21F5BA0900D31897 /* Result.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,7 +107,6 @@
 		3FD6711321EF4E1500D31897 /* CountriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesManager.swift; sourceTree = "<group>"; };
 		3FD6711921F093A200D31897 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		3FD6711B21F0962D00D31897 /* CountryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryAPI.swift; sourceTree = "<group>"; };
-		3FD6711D21F096E500D31897 /* MyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyModel.swift; sourceTree = "<group>"; };
 		3FD6711F21F5BA0900D31897 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,7 +185,6 @@
 				3FD6711021EF2BA000D31897 /* Country.swift */,
 				3FD6711921F093A200D31897 /* WeatherAPI.swift */,
 				3FD6711B21F0962D00D31897 /* CountryAPI.swift */,
-				3FD6711D21F096E500D31897 /* MyModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,7 +411,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FD670CD21ECA3F400D31897 /* UITableViewCell+AutoReuseIdentifier.swift in Sources */,
-				3FD6711E21F096E500D31897 /* MyModel.swift in Sources */,
 				3FD670C421ECA3F400D31897 /* ObservableObject.Observer.swift in Sources */,
 				3FD670D621ECA3F400D31897 /* Cast.swift in Sources */,
 				3FD6711C21F0962D00D31897 /* CountryAPI.swift in Sources */,
