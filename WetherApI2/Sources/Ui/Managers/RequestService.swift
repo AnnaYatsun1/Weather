@@ -12,7 +12,7 @@ import UIKit
 //import SocketIO
 
 
-class Request    {
+class RequestService {
     let queue = DispatchQueue(label: "requests.queue", qos: .utility)
     func make(url: String, completion: @escaping Closure.Execute<Data>) {
         guard let endpoint = URL(string: url) else {

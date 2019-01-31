@@ -16,7 +16,6 @@ class NetworkManager {
     let mainUrl = "https://restcountries.eu/rest/v2/all"
 
     public func loadCountries(completion: @escaping Closure.Execute<[Country]>) {
-
         self.requestService.make(url: mainUrl) { data in 
             self.parserCountries.decoder(from: data) { coutriesJson in
                 var countries = [Country]()
@@ -31,8 +30,7 @@ class NetworkManager {
             }
         }        
     }
-    
-//    @discardableResult
+
     func loadWeather(capital: String, completion: @escaping Closure.Execute<Weather>) {
         let baseUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + capital + "&units=metric&APPID=497c896b2c9814f2e7c9508a4c7ba762"
         let convertUrl = baseUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -46,5 +44,4 @@ class NetworkManager {
         }
         
     }
-
 }
