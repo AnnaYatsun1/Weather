@@ -15,4 +15,8 @@ public func unless<Result>(_ condition: Bool, exetute: () -> Result? ) -> Result
     return when(!condition, execute: exetute)
 }
 
-
+func dispatchOnMain(_ execute: (() -> ())?) {
+    DispatchQueue.main.async {
+        execute?()
+    }
+}

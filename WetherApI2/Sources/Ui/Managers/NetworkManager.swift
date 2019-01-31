@@ -1,58 +1,50 @@
 //
-//  NetworkManager.swift
+//  ModelManager.swift
 //  WetherApI2
 //
-//  Created by Anna Yatsun on 14/01/2019.
+//  Created by Anna Yatsun on 16/01/2019.
 //  Copyright © 2019 Student. All rights reserved.
 //
 
 import Foundation
 
-class NetworkManager<Value>: ObservableObject<NetworkManager.State> where Value: Decodable {
-    
-    public enum State {
-        case notWorking
-        case didStartLoading
-        case didLoad
-        case didFailedWithError(_ error: Error?)
+
+class NetworkManager {
+    var requestService = RequestService()
+    private var parserCountries = Parser<[CountryAPI]>()
+    private var parserWeather = Parser<WeatherAPI>()
+    let mainUrl = "https://restcountries.eu/rest/v2/all"
+
+    public func loadCountries(completion: @escaping Closure.Execute<[Country]>) {
+
+        self.requestService.make(url: mainUrl) { data in 
+            self.parserCountries.decoder(from: data) { coutriesJson in
+                var countries = [Country]()
+                coutriesJson.do { 
+                    countries = $0.map { 
+                        Country(name: $0.name, capital: $0.capital)
+                    }
+                  
+                }
+                
+                completion(countries)
+            }
+        }        
     }
     
-    var model: Value?
-    
-    private(set) var state: State = .notWorking {
-        didSet {
-            DispatchQueue.main.async {
-                self.notify(new: self.state)
+//    @discardableResult
+    func loadWeather(capital: String, completion: @escaping Closure.Execute<Weather>) {
+        let baseUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + capital + "&units=metric&APPID=497c896b2c9814f2e7c9508a4c7ba762"
+        let convertUrl = baseUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+     
+        self.requestService.make(url: convertUrl!) { data in 
+            self.parserWeather.decoder(from: data) { weatherJson in
+                weatherJson.do {
+                     completion(Weather(temperature: $0.main.temp))
+                }
             }
         }
-    }
-    
-    func requestData(url: URL) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            let information = data.flatMap { try? JSONDecoder().decode(Value.self, from: $0) }
-            information.do {
-                self.model = $0
-                self.state = .didLoad
-            }
-            error.do { self.state = State.didFailedWithError($0) }
-            }.resume()
-    }
-}
-
-
-class Parser<Object: Decodable> {
-    var decoded: Object?
-    func decoder(from data: Data?, conpletion: (Object?) -> ()) {
-        if let date = data {
-            do {    
-                decoded = try JSONDecoder().decode(Object.self, from: data!)
-            } catch {
-            print("error")
-            } 
-        } else {
-            print()
-        } 
-        conpletion(decoded) 
         
     }
+
 }

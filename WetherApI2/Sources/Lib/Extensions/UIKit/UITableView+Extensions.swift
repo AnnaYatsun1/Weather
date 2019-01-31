@@ -22,4 +22,12 @@ extension UITableView {
        return self.dequeueReusableCell(withIdentifier: toString(cellClass), for: indexPath)
 
     }
+    func reusableCell<Cell: UITableViewCell>(cellClass: Cell.Type, for indexPath: IndexPath, configure: Closure.Execute<Cell>) -> Cell {
+        let cell = cast(self.dequeueReusableCell(withIdentifier: toString(cellClass), for: indexPath)) 
+            ?? Cell()
+        configure(cell)
+        
+        return cell
+    }
+    
 }

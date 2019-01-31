@@ -9,25 +9,43 @@
 import UIKit
 
 class WeatherViewController: UIViewController, RootViewRepresentable {
+    
     typealias RootView = WeatherView
     
-    public var weatherManager = WeatherManager()
-    public var city = "Default"
+    private var wrappedCity: Model<Country>
+    private var observer: Cancellable?
     
-    public var completion: Completion<Weathers>?
+    private(set) var countriesManager = NetworkManager()
     
+    deinit { print("\(self) deinit") }
+    
+    init(city: Model<Country>) {
+        self.wrappedCity = city
+        super.init(nibName: nil, bundle: nil)
+//        print(city.value.weather?.temperature)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Weather"
         
-        self.weatherManager.completion = { weather in
-            DispatchQueue.main.async {
-                self.rootView?.fillInTheData(data: weather, city : self.city)
-                self.completion?(weather)
+        let country = self.wrappedCity.value
+        country.capital.do { 
+            self.countriesManager.loadWeather(capital: $0) { weather in 
+                self.wrappedCity.modify {
+                    $0.weather = weather
+                }
+                self.updateUI()             
             }
         }
-        
-        self.weatherManager.parsWeather(capital: self.city)
     }
     
+    private func updateUI() {
+      dispatchOnMain {
+            self.rootView?.fill(with: self.wrappedCity.value)
+        }
+    }
 }

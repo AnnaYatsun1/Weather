@@ -8,86 +8,63 @@
 
 import UIKit
 
-
-
 class CountriesViewController: UIViewController, ModelDelegate, RootViewRepresentable {
-    typealias RootView = CountriesView
-    private(set) var country = Countries(values: [Country]())
-    private(set) var countriesManager = CountriesManager()
     
+    typealias RootView = CountriesView
+    
+    private(set) var countriesManager = NetworkManager()
+    private var observer: Cancellable?
+    
+    private let newModel = ArrayModel(values: [Country]())
+    
+    private var table: UITableView? {
+        return self.rootView?.table
+    }
     
     func update() {
         DispatchQueue.main.async {
-            self.rootView?.table?.reloadData()
+            self.table?.reloadData()
         } 
     }
 
-    private var model = Countries(values: [Country]()) {
-        didSet {
-            DispatchQueue.main.async {
-                self.rootView?.table?.reloadData()
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.table?.register(CityCellCollectionViewCell.self)
         
-        self.countriesManager.parsCountries()
-        self.countriesManager.completion = {
-            self.model = Countries(values: $0)
-            print(1)
+        self.observer = self.newModel.observer { state, object in
+            switch state {
+            case .updateFinished: self.update()
+            case .updateCancelled: return
+            case .updateFailed: return
+            case .updateStarted: return
+            }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.update()
+        
+        self.table?.register(CityCellTableViewCell.self)
+        self.countriesManager.loadCountries() { 
+            self.newModel.update(values: $0)
+            print("capital \($0.count)")
+        }
     }
 }
 
-
 extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return self.model.values.count
+        return self.newModel.values.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withCellClass: CityCellCollectionViewCell.self, for: indexPath)
-        (cell as? CityCellCollectionViewCell).do {
-            $0.fill(country: self.model.values[indexPath.row])
+        return tableView.reusableCell(cellClass: CityCellTableViewCell.self, for: indexPath) {
+            $0.fill(country: self.newModel.values.value[indexPath.row].value)
         }
-        
-        return cell
-            
-//        let date = self.model.values[indexPath.row]
-//        let weater = date.weather.isSome
-//        if weater {
-//            let cell = tableView.dequeueReusableCell(withCellClass: CityCellCollectionViewCell.self, for: indexPath)
-//            (cell as? CityCellCollectionViewCell).do {
-//                $0.fill(country: self.model.values[indexPath.row])
-//            }
-//            return cell
-//        } else {
-//            let cell = tableView.dequeueReusableCell(withCellClass: CityCellCollectionViewCell.self, for: indexPath)
-//            (cell as? CityCellCollectionViewCell).do {
-//                $0.fill(country: self.model.values[indexPath.row])
-//            }
-//            return cell
-//        }
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cell = tableView.dequeueReusableCell(withCellClass: CityCellCollectionViewCell.self)
-        
-        return cell?.height ?? 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let weatherVC = WeatherViewController()
-        weatherVC.city = self.model.values[indexPath.row].capital!
-        self.navigationController?.pushViewController(weatherVC, animated: true)
         
+        let city = self.newModel.values.value[indexPath.row]
+        let weatherViewController = WeatherViewController(city: city)
+        
+        self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
 }

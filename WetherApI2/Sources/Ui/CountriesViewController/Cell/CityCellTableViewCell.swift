@@ -1,5 +1,5 @@
 //
-//  CityCellCollectionViewCell.swift
+//  CityCellTableViewCell.swift
 //  WetherApI2
 //
 //  Created by Anna Yatsun on 14/01/2019.
@@ -8,21 +8,27 @@
 
 import UIKit
 
-class CityCellCollectionViewCell: UITableViewCell {
+class CityCellTableViewCell: UITableViewCell {
 
     @IBOutlet var cityLabel: UILabel?
     @IBOutlet var countryLable: UILabel?
     @IBOutlet var temperature: UILabel?
     @IBOutlet var data: UILabel?
+
+
     
     public func fill(country: Country) {
         self.countryLable?.text = country.name
         self.cityLabel?.text = country.capital
-        self.temperature?.text = country.weather?.main?.temperature.debugDescription
+        self.temperature?.text = country.weather?.temperature?.description
 //        self.data?.text = country.weather?.main?.temperature?.description
     }
     
+    deinit {
+//        print("cell deinit")
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
+//        print("cell init")
     }
 }

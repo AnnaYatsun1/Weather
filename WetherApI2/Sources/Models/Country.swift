@@ -8,16 +8,16 @@
 
 import Foundation
 
-class Country: Decodable, Equatable {
+class Country: Equatable {
 
     var name: String?
     var capital: String?
-    var weather: Weathers?
+    var weather: Weather?
     
-    init(name: String, capital: String, weather: Weathers? = nil) {
+    init(name: String, capital: String, weather: Weather? = nil) {
         self.name = name
         self.capital = capital
-        self.weather = weather
+        self.weather = weather        
     }
     
     convenience init (apiJson: CountryAPI) {
