@@ -11,31 +11,24 @@ import Network
 import UIKit
 //import SocketIO
 
+enum APPError: Error {
+    case networkError(Error)
+    case dataNotFound
+    case jsonParsingError(Error)
+    case invalidStatusCode(Int)
+}
 
 class RequestService {
-    let queue = DispatchQueue(label: "requests.queue", qos: .utility)
-    func make(url: String, completion: @escaping Closure.Execute<Data>) {
-        guard let endpoint = URL(string: url) else {
-            print("Error creating endpoint")
-            return
-        }
-        
-        URLSession.shared.dataTask(with: endpoint) { (data, response, error) in
-        self.queue.async {
-            do {
-                if let response = response as? HTTPURLResponse {
-                    if response.statusCode == 200 {
-                        if let data = data {
-                            completion(data)
-                        }
-                    }
-                }
-            } catch {
-                print(error)
-            } 
-        }
-        }.resume()
+    
+    public func requestData(url: URL, completion: @escaping (Data?, Error?) -> ()) {
+        URLSession
+            .shared
+            .dataTask(with: url) { (data, response, error) in
+                completion(data, error) }
+            .resume()
     }
-    
-    
 }
+
+
+ 
+    

@@ -8,32 +8,24 @@
 
 import Foundation
 
-class Model<Value> {
+class Model<Value>: ObservableObject<Event> {
    
-    typealias PropertyObserver = (State) -> ()
+//    typealias PropertyObserver = (Event) -> ()
+//    private var observer = CancellableObject()
     
-    public var value: Value {
+    var value: Value {
         get { return self.mutableValue }
         set { self.modify { $0 = newValue } }
     }
-    
+
     private var mutableValue: Value
-    private let willSet: PropertyObserver
-    private let didSet: PropertyObserver
-    
-    init(
-        _ value: Value,
-        willSet: @escaping PropertyObserver,
-        didSet: @escaping PropertyObserver
-    ) {
+
+    init(_ value: Value) {      
         self.mutableValue = value
-        self.willSet = willSet
-        self.didSet = didSet
     }
-    
+
     func modify<Result>(_ action: (inout Value) -> Result) -> Result {
-            self.willSet(.updateStarted)
-            defer { self.didSet((.updateFinished)) }
+            defer { self.notify(new: .update) }
             return action(&self.mutableValue)
     }
 }

@@ -14,10 +14,5 @@ final class Weather{
     init(temperature: Double?) {
         self.temperature = temperature
     }
-    
-    convenience init (apiJson: WeatherAPI) {
-        self.init(temperature: apiJson.main.temp)
-    }
-
 }
 

@@ -14,38 +14,34 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     private var wrappedCity: Model<Country>
     private var observer: Cancellable?
-    
-    private(set) var countriesManager = NetworkManager()
+    private var wetherManeger: WeatherNetworkService
     
     deinit { print("\(self) deinit") }
     
-    init(city: Model<Country>) {
+    init(city: Model<Country>, wetherManeger: WeatherNetworkService) {
         self.wrappedCity = city
+        self.wetherManeger = wetherManeger
         super.init(nibName: nil, bundle: nil)
-//        print(city.value.weather?.temperature)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let country = self.wrappedCity.value
-        country.capital.do { 
-            self.countriesManager.loadWeather(capital: $0) { weather in 
-                self.wrappedCity.modify {
-                    $0.weather = weather
-                }
-                self.updateUI()             
+        self.wetherManeger.getWeather(country: country) { weather in 
+            self.wrappedCity.modify {
+                $0.weather = weather
             }
+            self.updateUI()
         }
     }
-    
+            
     private func updateUI() {
       dispatchOnMain {
-            self.rootView?.fill(with: self.wrappedCity.value)
+            self.rootView?.fill(with: self.wrappedCity)
         }
     }
 }

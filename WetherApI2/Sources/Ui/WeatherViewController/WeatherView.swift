@@ -15,8 +15,8 @@ class WeatherView: UIView {
     @IBOutlet public var infoLabel: UILabel?
     @IBOutlet public var temperatura: UILabel?
     
-    func fill(with model: Country) {
-        self.infoLabel?.text = model.capital
-        self.temperatura?.text = model.weather?.temperature?.description
+    func fill(with model: Model<Country>) {
+        self.infoLabel?.text = model.value.name
+        self.temperatura?.text = model.value.weather?.temperature?.description
     }
 }

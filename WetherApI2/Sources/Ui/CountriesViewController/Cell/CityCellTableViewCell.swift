@@ -17,10 +17,10 @@ class CityCellTableViewCell: UITableViewCell {
 
 
     
-    public func fill(country: Country) {
-        self.countryLable?.text = country.name
-        self.cityLabel?.text = country.capital
-        self.temperature?.text = country.weather?.temperature?.description
+    public func fill(country:  Model<Country>) {
+        self.countryLable?.text = country.value.name
+        self.cityLabel?.text = country.value.capital
+        self.temperature?.text = country.value.weather?.temperature?.description
 //        self.data?.text = country.weather?.main?.temperature?.description
     }
     

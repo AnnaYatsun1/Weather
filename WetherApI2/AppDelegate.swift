@@ -15,24 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-       
-        let navigationController = UINavigationController(rootViewController: CountriesViewController())
+        let requestService = RequestService()
+        let countriesNetworkService = CountriesNetworkService(requestService: requestService)
+          let weatherNetworkService = WeatherNetworkService(requestService: requestService)
+        let rootViewController = CountriesViewController(countriesManager: countriesNetworkService, weatherManager: weatherNetworkService)
+        
+        let navigationController = UINavigationController(rootViewController: rootViewController)
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
         
         return true
-        
-//        
-//        
-//        let window = UIWindow(frame: UIScreen.main.bounds)
-//        window.rootViewController = CountriesViewController()
-//        window.makeKeyAndVisible()
-//            
-//        self.window = window
-    
-//        return true
+
     }
 
 }

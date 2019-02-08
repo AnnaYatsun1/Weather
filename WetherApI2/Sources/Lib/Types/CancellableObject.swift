@@ -30,8 +30,7 @@ class CancellableObject: AbstractCancellableObject<Cancellable?> {
     
     // MARK: - Initialization
     init() {
-        super.init(initial: nil) {
-            $0?.cancel() }
+        super.init(initial: nil) { $0?.cancel() }
     }
 }
 

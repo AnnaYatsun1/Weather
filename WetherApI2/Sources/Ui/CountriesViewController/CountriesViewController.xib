@@ -24,8 +24,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="wzd-i0-4DX"/>
-                        <outlet property="delegate" destination="-1" id="IgZ-kT-aXC"/>
+                        <outlet property="dataSource" destination="-1" id="ADW-0p-CdH"/>
+                        <outlet property="delegate" destination="-1" id="Z6c-xd-jDT"/>
                     </connections>
                 </tableView>
             </subviews>

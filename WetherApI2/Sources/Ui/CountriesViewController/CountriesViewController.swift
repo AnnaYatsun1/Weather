@@ -8,14 +8,16 @@
 
 import UIKit
 
-class CountriesViewController: UIViewController, ModelDelegate, RootViewRepresentable {
+class CountriesViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = CountriesView
     
-    private(set) var countriesManager = NetworkManager()
-    private var observer: Cancellable?
+    public var countriesManager: CountriesNetworkService
+    public var weatherManager: WeatherNetworkService
+    private var observer = CancellableObject()
+    private var indexPath: IndexPath?
     
-    private let newModel = ArrayModel(values: [Country]())
+    private let model = ArrayModel(values: [Country]())
     
     private var table: UITableView? {
         return self.rootView?.table
@@ -27,22 +29,36 @@ class CountriesViewController: UIViewController, ModelDelegate, RootViewRepresen
         } 
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.observer = self.newModel.observer { state, object in
+    init(countriesManager: CountriesNetworkService, weatherManager: WeatherNetworkService) {
+      
+        self.countriesManager = countriesManager
+        self.weatherManager = weatherManager
+        super.init(nibName: nil, bundle: nil)
+        self.observer.value = self.model.observer { state in 
             switch state {
-            case .updateFinished: self.update()
-            case .updateCancelled: return
-            case .updateFailed: return
-            case .updateStarted: return
+            case .add: 
+                self.update()
+            case .remove: break
+            case .update: self.reload()
             }
         }
-        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.table?.register(CityCellTableViewCell.self)
-        self.countriesManager.loadCountries() { 
-            self.newModel.update(values: $0)
-            print("capital \($0.count)")
+        self.countriesManager.getCountries(self.model)
+    }
+    
+    func reload() {
+        if let indexPath = self.indexPath {
+            self.table?.reloadRows(at: [indexPath], with: .none)
+        } else {
+            self.update()
         }
     }
 }
@@ -50,21 +66,25 @@ class CountriesViewController: UIViewController, ModelDelegate, RootViewRepresen
 extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.newModel.values.value.count
+        return self.model.count  
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.reusableCell(cellClass: CityCellTableViewCell.self, for: indexPath) {
-            $0.fill(country: self.newModel.values.value[indexPath.row].value)
+            $0.fill(country: self.model[indexPath.row])
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let city = self.newModel.values.value[indexPath.row]
-        let weatherViewController = WeatherViewController(city: city)
-        
+        let country = self.model[indexPath.row]
+        let weatherViewController = WeatherViewController(city: country, wetherManeger: weatherManager )
+        country.observer { _ in
+            dispatchOnMain {
+                self.table?.reloadRows(at: [indexPath], with: .top)
+            }
+        }
+
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
 }

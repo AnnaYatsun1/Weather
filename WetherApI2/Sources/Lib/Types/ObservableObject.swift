@@ -10,7 +10,7 @@ import Foundation
 public class ObservableObject<Value> {
 
     public typealias Object = AnyObject
-    public typealias Handler = (Value, Object?) -> ()
+    public typealias Handler = (Value) -> ()
     
     private let atomicObservers = Atomic([Observer]())
 
@@ -24,10 +24,10 @@ public class ObservableObject<Value> {
         }
     }
     
-    public func notify(new: Value, object: Object? = nil) {
-        self.atomicObservers.modify { observers in
-            observers = observers.filter { $0.isObserving }
-            observers.forEach { $0.handler(new, object) }
+    public func notify(new: Value) {
+        self.atomicObservers.modify {
+            $0 = $0.filter { $0.isObserving }
+            $0.forEach { $0.handler(new) }
         }
     }
 }

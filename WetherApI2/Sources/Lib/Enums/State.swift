@@ -8,9 +8,15 @@
 
 import Foundation
 
-enum State {
-    case updateStarted
-    case updateFinished
-    case updateFailed
-    case updateCancelled
+//enum State {
+//    case updateStarted
+//    case updateFinished
+//    case updateFailed
+//    case updateCancelled
+//}
+
+public enum Event {
+    case add
+    case remove
+    case update
 }

@@ -8,22 +8,21 @@
 
 import Foundation
 
+
+class MyError: Error {
+    
+}
 class Parser<Object: Decodable> {
     
+    func decoders(from data: Data?) -> Result<Object>  {
     
-    func decoder(from data: Data?, completion: (Object?) -> ()) {
-        var decoded: Object?
+        var result: Result<Object>
 
-        if let data = data {
-            do {    
-                decoded = try JSONDecoder().decode(Object.self, from: data)
-            } catch {	
-            print("error")
-            } 
-        } else {
-            print()
-        } 
-        
-        completion(decoded) 
+        result = data
+            .flatMap { try? JSONDecoder().decode(Object.self, from: $0) }
+            .map { Result.success($0) }
+            ?? .error(MyError())
+
+        return result
     }
 }

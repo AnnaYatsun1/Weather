@@ -8,41 +8,51 @@
 
 import Foundation
  
-class ArrayModel<T: AnyObject>: BaseModel { 
+class ArrayModel<T: AnyObject>: ObservableObject<Event> { 
 
-    public private(set) var values = Atomic([Model<T>]())
+    public private(set) var values = [T]()
+    private var observer = CancellableObject()
     
     init(values: [T]) {
         super.init()
 
-        let notificator = self.notificator
-        let wrapped = values.map {
-            Model($0, willSet: notificator, didSet: notificator)
-        }
-        
-        self.values = Atomic(wrapped)
+        self.values = values
     }
     
     public var count: Int {
-        return self.values.value.count
+        return self.values.count
     }
     
-    public lazy var notificator = { (event: State) in 
-        self.notify(new: event)
-    }
-    
-    var isEmpty: Bool {
-        return self.values.value.isEmpty
+    public var isEmpty: Bool {
+        return self.values.isEmpty
     }
     
     public func add(value: T) {
-        self.values.value.append(Model(value, willSet: self.notificator, didSet: self.notificator))
+        self.values.append(value)
+        self.notify(new: .add)
+    }
+    public func addAll(values: [T]) {
+        self.values.append(contentsOf: values)
+        self.notify(new: .add)
     }
     
+    public func remove(at index: Int) {
+        self.values.remove(at: index)
+        self.notify(new: .remove)
+    }
     
-    public func update(values: [T]) {
-        self.notify(new: .updateStarted)
-        self.values.value = values.map { Model($0, willSet: self.notificator, didSet: self.notificator) }
-        self.notify(new: .updateFinished)
+    public func removeAll() {
+        self.values.removeAll()
+        self.notify(new: .remove)
+    }
+    
+    subscript(index: Int) -> Model<T> {
+        let model = Model(self.values[index])
+        model.observer(handler: self.notify)
+
+        return model
+        
     }
 }
+
+
