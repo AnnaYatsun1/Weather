@@ -14,8 +14,13 @@ fileprivate struct Constant {
 }
 
 
-class WeatherNetworkService: RequestServiceType { // Cancelable, states: didLoad, inLoad, idle, canceled
- 
+class WeatherNetworkService: RequestServiceType {
+    var task: URLSessionTask
+    var isCancelled = false
+    
+    init(task: URLSessionTask) {
+        self.task = task
+    }
     private let parser = ParserWeather()
     
     public func getWeather(country: Country, completion: @escaping Closure.Execute<Weather>) {
@@ -36,6 +41,12 @@ class WeatherNetworkService: RequestServiceType { // Cancelable, states: didLoad
                 }
             }
         }
+    }
+    func cancel() {
+        if self.task.state == .running {
+            self.task.cancel()
+        }
+        self.isCancelled = true
     }
     
 }

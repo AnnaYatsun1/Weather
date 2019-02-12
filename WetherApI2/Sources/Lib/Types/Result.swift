@@ -14,14 +14,20 @@ enum ResultErrors: Error {
 }
 
 public enum Result<Value, Error: Swift.Error> {
-    
     case success(Value)
     case error(Error)
+    
+    init(success: Value?, error: Error?, `default`: Error) {
+
+        self = error
+            .map(Result.init)
+            ?? success.map(Result.init) 
+            ?? Result(error: `default` )
+    }
     
     public init(value: Value) {
         self = .success(value)
     }
-
     
     public init(error: Error) {
         self = .error(error)
@@ -74,12 +80,6 @@ public enum Result<Value, Error: Swift.Error> {
 }
 }
 
-////    init(success: Value?, error: Error?, `default`: Error) {
-////        self = error
-////            .map(Result.init)
-////            ?? success.map(Result.init)
-////            ?? Result(error: ResultErrors.couldNotInitialize)
-////    }
 ////    
 ////    public static func lift<Value>(_ value: Value) -> Result<Value> {
 ////        return .success(value)

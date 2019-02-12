@@ -14,6 +14,12 @@ fileprivate struct Constant {
 }
 
 class CountriesNetworkService: RequestServiceType {
+    var task: URLSessionTask
+    var isCancelled = false
+    
+    init(task: URLSessionTask) {
+        self.task = task
+    }
     
     private let model = ArrayModel(values: [Country]())
     
@@ -31,5 +37,12 @@ class CountriesNetworkService: RequestServiceType {
                 }
             }
         }
+    }
+    
+    func cancel() {
+        if self.task.state == .running {
+            self.task.cancel()
+        }
+        self.isCancelled = true
     }
 }
