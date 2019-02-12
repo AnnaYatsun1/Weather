@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0AFEAA2211AE4100319984 /* IDPPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0AFEA92211AE4100319984 /* IDPPrint.swift */; };
+		3F0AFEAC2212CED300319984 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0AFEAB2212CED300319984 /* Functional.swift */; };
 		3F0FB118220C620C009BCEC4 /* ParserCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB117220C620C009BCEC4 /* ParserCountry.swift */; };
 		3F0FB11A220C6220009BCEC4 /* ParserWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB119220C6220009BCEC4 /* ParserWeather.swift */; };
 		3F0FB11C220C6334009BCEC4 /* CountriesNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */; };
@@ -63,6 +65,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F0AFEA92211AE4100319984 /* IDPPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDPPrint.swift; sourceTree = "<group>"; };
+		3F0AFEAB2212CED300319984 /* Functional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functional.swift; sourceTree = "<group>"; };
 		3F0FB117220C620C009BCEC4 /* ParserCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserCountry.swift; sourceTree = "<group>"; };
 		3F0FB119220C6220009BCEC4 /* ParserWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserWeather.swift; sourceTree = "<group>"; };
 		3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesNetworkService.swift; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 				3FD670BB21ECA3F300D31897 /* ToString.swift */,
 				3FD670BC21ECA3F300D31897 /* Weakify.swift */,
 				3FD670BD21ECA3F300D31897 /* Conditions.swift */,
+				3F0AFEA92211AE4100319984 /* IDPPrint.swift */,
+				3F0AFEAB2212CED300319984 /* Functional.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -351,9 +357,9 @@
 			isa = PBXGroup;
 			children = (
 				3FD670E421ECBD9900D31897 /* Parser.swift */,
-				3F6BF55721FB3F5100F15F2A /* RequestService.swift */,
 				3F0FB117220C620C009BCEC4 /* ParserCountry.swift */,
 				3F0FB119220C6220009BCEC4 /* ParserWeather.swift */,
+				3F6BF55721FB3F5100F15F2A /* RequestService.swift */,
 				3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */,
 				3F0FB11D220C63BE009BCEC4 /* WeatherNetworkService.swift */,
 			);
@@ -445,6 +451,7 @@
 				3FD670DA21ECA3F400D31897 /* Cancellable.swift in Sources */,
 				3FD670C321ECA3F400D31897 /* CancellableObject.swift in Sources */,
 				3FD66FAB21ECA11500D31897 /* AppDelegate.swift in Sources */,
+				3F0AFEAC2212CED300319984 /* Functional.swift in Sources */,
 				3F970A88220056100012F1B7 /* State.swift in Sources */,
 				3FD670CA21ECA3F400D31897 /* CGPoint+Extensions.swift in Sources */,
 				3FD670EE21ECC25800D31897 /* WeatherViewController.swift in Sources */,
@@ -474,6 +481,7 @@
 				3FD670CB21ECA3F400D31897 /* CGRect+Extensions.swift in Sources */,
 				3FD670D521ECA3F400D31897 /* Strideable+Times.swift in Sources */,
 				3FD670E921ECC03100D31897 /* WeatherView.swift in Sources */,
+				3F0AFEAA2211AE4100319984 /* IDPPrint.swift in Sources */,
 				3FD670D721ECA3F400D31897 /* ToString.swift in Sources */,
 				3FD670C921ECA3F400D31897 /* CGSize+Extensions.swift in Sources */,
 				3FD6711A21F093A200D31897 /* WeatherAPI.swift in Sources */,

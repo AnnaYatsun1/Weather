@@ -25,7 +25,7 @@ class Model<Value>: ObservableObject<Event> {
     }
 
     func modify<Result>(_ action: (inout Value) -> Result) -> Result {
-            defer { self.notify(new: .update) }
-            return action(&self.mutableValue)
+        defer { self.notify(new: .update) }
+        return action(&self.mutableValue)
     }
 }

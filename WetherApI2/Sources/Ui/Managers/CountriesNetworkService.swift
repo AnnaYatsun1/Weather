@@ -8,34 +8,26 @@
 
 import Foundation
 
-
 fileprivate struct Constant {
+    
     static let mainUrl = "https://restcountries.eu/rest/v2/all"
-
 }
 
-class CountriesNetworkService {
+class CountriesNetworkService: RequestServiceType {
     
-    private let requestService: RequestService
     private let model = ArrayModel(values: [Country]())
     
     private let parser = ParserCountry()
-    
-        init(requestService: RequestService) {
-            self.requestService = requestService
-        }
       
     public func getCountries(_ countrys: ArrayModel<Country>) {
         let urlCountry = URL(string: Constant.mainUrl)
-        
-        urlCountry.do { url in
-            self.requestService.requestData(url: url) { data, error in
-                let countries = self.parser.convert(data: data!)
-                switch countries { 
-                case .success(let country): 
-                    //                        print(country.count)
-                    countrys.addAll(values: country)
-                case .error(let errors):  break
+        urlCountry.do { url in 
+            self.requestData(url: url) { (result: Result) in 
+                result.map { data in 
+                 self.parser.convert(data: data!)
+                    .map { country in 
+                        countrys.addAll(values: country)
+                    }
                 }
             }
         }

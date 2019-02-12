@@ -29,7 +29,7 @@ extension ObservableObject {
         
         // MARK: - Public API
         func cancel() {
-            print("ObservableObject(\(self)) is cancelled")
+//            print("ObservableObject(\(self)) is cancelled")
             self.observable = nil
         }
     }

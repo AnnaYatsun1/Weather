@@ -35,6 +35,7 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
             self.wrappedCity.modify {
                 $0.weather = weather
             }
+            
             self.updateUI()
         }
     }

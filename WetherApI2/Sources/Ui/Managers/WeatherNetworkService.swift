@@ -14,16 +14,9 @@ fileprivate struct Constant {
 }
 
 
-class WeatherNetworkService {
-    
-    private let requestService: RequestService
-    
+class WeatherNetworkService: RequestServiceType { // Cancelable, states: didLoad, inLoad, idle, canceled
+ 
     private let parser = ParserWeather()
-   
-    
-    init(requestService: RequestService) {
-        self.requestService = requestService
-    }
     
     public func getWeather(country: Country, completion: @escaping Closure.Execute<Weather>) {
         let capital = country.capital
@@ -32,22 +25,17 @@ class WeatherNetworkService {
         
         baseUrl
             .flatMap(URL.init)
-            .do { url in
-            self.requestService.requestData(url: url) { data, error in
-//                print(data)
-               let weather = self.parser.convert(data: data!)
-                // температура передала
-//                print(" weathre in network \(weather)")
-                switch weather {
-                case .success(var weather):
-//                    print("температура \(weather.temperature)")
-                    country.weather = weather
-                    completion(weather)
-//                    print("температура2 ikjk;f \(weather.temperature) \(country.capital)")
-                
-                case .error(let error): break
+            .do  { url in 
+            self.requestData(url: url) { (result: Result) in 
+                result.map { data in 
+                    self.parser.convert(data: data!)
+                        .map { weather in 
+                            country.weather? = weather
+                            completion(weather)
+                    }
                 }
             }
         }
     }
+    
 }

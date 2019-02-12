@@ -7,28 +7,38 @@
 //
 
 import Foundation
-import Network
-import UIKit
-//import SocketIO
 
 enum APPError: Error {
+    
     case networkError(Error)
     case dataNotFound
     case jsonParsingError(Error)
     case invalidStatusCode(Int)
 }
 
-class RequestService {
+protocol RequestServiceType {
+
+    func requestData(url: URL, completion: @escaping (Result<Data?, APPError>) -> Void)
+
+}
+
+extension RequestServiceType {
     
-    public func requestData(url: URL, completion: @escaping (Data?, Error?) -> ()) {
-        URLSession
-            .shared
-            .dataTask(with: url) { (data, response, error) in
-                completion(data, error) }
-            .resume()
+    func requestData(url: URL, completion: @escaping (Result<Data?, APPError>) -> Void ) {
+        let session = URLSession.shared
+        let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60)
+        let task = session.dataTask(with: request, completionHandler: { data, response, error in
+            guard let data = data else {
+                
+                completion(Result.error(APPError.dataNotFound))
+                return
+            }
+//            debugPrint(error)
+            completion(Result.success(data))
+            
+        })
+        
+        task.resume()
     }
 }
 
-
- 
-    

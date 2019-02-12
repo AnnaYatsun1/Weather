@@ -15,7 +15,6 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     public var countriesManager: CountriesNetworkService
     public var weatherManager: WeatherNetworkService
     private var observer = CancellableObject()
-    private var indexPath: IndexPath?
     
     private let model = ArrayModel(values: [Country]())
     
@@ -29,17 +28,17 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
         } 
     }
 
-    init(countriesManager: CountriesNetworkService, weatherManager: WeatherNetworkService) {
-      
+    init(countriesManager: CountriesNetworkService, weatherManager: WeatherNetworkService) { 
         self.countriesManager = countriesManager
         self.weatherManager = weatherManager
+
         super.init(nibName: nil, bundle: nil)
+        
         self.observer.value = self.model.observer { state in 
             switch state {
-            case .add: 
-                self.update()
+            case .add: self.update()
             case .remove: break
-            case .update: self.reload()
+            case .update: self.update()
             }
         }
     }
@@ -53,14 +52,6 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
         self.table?.register(CityCellTableViewCell.self)
         self.countriesManager.getCountries(self.model)
     }
-    
-    func reload() {
-        if let indexPath = self.indexPath {
-            self.table?.reloadRows(at: [indexPath], with: .none)
-        } else {
-            self.update()
-        }
-    }
 }
 
 extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -71,20 +62,20 @@ extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.reusableCell(cellClass: CityCellTableViewCell.self, for: indexPath) {
-            $0.fill(country: self.model[indexPath.row])
+            let country = self.model[indexPath.row]
+            
+            $0.fill(country: country)
+            $0.observer.value = country.observer { _ in
+                dispatchOnMain {
+                    self.table?.reloadRows(at: [indexPath], with: .top)
+                }
+            }        
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         let country = self.model[indexPath.row]
-        let weatherViewController = WeatherViewController(city: country, wetherManeger: weatherManager )
-        country.observer { _ in
-            dispatchOnMain {
-                self.table?.reloadRows(at: [indexPath], with: .top)
-            }
-        }
-
+        let weatherViewController = WeatherViewController(city: country, wetherManeger: self.weatherManager)
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
 }

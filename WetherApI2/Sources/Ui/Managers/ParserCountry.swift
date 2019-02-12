@@ -9,18 +9,9 @@
 import Foundation
 
 class ParserCountry: Parser<[CountryAPI]> {
-    
-    public func convert(data: Data) -> Result<[Country]> {
-        let countryJSON = super.decoders(from: data)
-        switch countryJSON {
-        case .success(let json):
-            let countries = json.map {
-                Country(name: $0.name, capital: $0.capital)
-            }
-            
-            return .success(countries)
-        case .error(let error): return .error(error)
-            
-        }
+   
+    public func convert(data: Data) -> Result<[Country], ParserErrors> {
+      return self.object(from: data)
+        .map {  $0.map { Country(name: $0.name, capital: $0.capital) }} 
     }
 }

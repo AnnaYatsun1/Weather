@@ -8,21 +8,17 @@
 
 import Foundation
 
-
-class MyError: Error {
+enum ParserErrors: Error {
     
+    case dataError 
 }
+
 class Parser<Object: Decodable> {
     
-    func decoders(from data: Data?) -> Result<Object>  {
-    
-        var result: Result<Object>
-
-        result = data
+    func object(from data: Data?) -> Result<Object, ParserErrors> {
+        return data
             .flatMap { try? JSONDecoder().decode(Object.self, from: $0) }
             .map { Result.success($0) }
-            ?? .error(MyError())
-
-        return result
+            ?? .error(ParserErrors.dataError)
     }
 }
