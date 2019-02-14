@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import  Alamofire
 
 enum APPError: Error {
     
@@ -16,27 +17,39 @@ enum APPError: Error {
     case invalidStatusCode(Int)
 }
 
-protocol RequestServiceType: Cancellable {
-    var task: URLSessionTask { get }
-    func requestData(url: URL, completion: @escaping (Result<Data?, APPError>) -> Void)
-
+protocol RequestServiceType {
+    
+    func requestData(url: URL, completion: @escaping (Result<Data?, APPError>) -> Void) -> NetworkTask
 }
 
-extension RequestServiceType {
-   
-    func requestData(url: URL, completion: @escaping (Result<Data?, APPError>) -> Void) {
-        let session = URLSession.shared
-        let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60)
-        let task = session.dataTask(with: request) { data, response, error in
+class RequestService: RequestServiceType {
+
+
+    private(set) var session: URLSession
+    
+    init(session: URLSession) {
+        self.session = session
+    }
+    
+    func requestData(url: URL, completion: @escaping (Result<Data?, APPError>) -> Void) -> NetworkTask {
+
+        let requestN = request(url).response { response in 
             completion(
                 Result(
-                    success: data, 
-                    error: error.map { _ in APPError.dataNotFound }, 
+                    success: response.data, 
+                    error: response.error.map { _ in APPError.dataNotFound }, 
                     default: APPError.dataNotFound)
             )
         }
+        defer {
+            requestN.resume()
+        }
         
-        task.resume()
+        
+        return requestN.task.map(NetworkTask.init) ?? .cancelled()
+        
     }
 }
+
+
 

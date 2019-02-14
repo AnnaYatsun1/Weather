@@ -14,13 +14,13 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     private var wrappedCity: Model<Country>
     private var observer: Cancellable?
-    private var wetherManeger: WeatherNetworkService
+    private var weatherManeger: WeatherNetworkService
     
     deinit { print("\(self) deinit") }
     
-    init(city: Model<Country>, wetherManeger: WeatherNetworkService) {
+    init(city: Model<Country>, weatherManeger: WeatherNetworkService) {
         self.wrappedCity = city
-        self.wetherManeger = wetherManeger
+        self.weatherManeger = weatherManeger
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -31,7 +31,8 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     override func viewDidLoad() {
         super.viewDidLoad()
         let country = self.wrappedCity.value
-        self.wetherManeger.getWeather(country: country) { weather in 
+        self.weatherManeger.getWeather(country: country) { weather in 
+            
             self.wrappedCity.modify {
                 $0.weather = weather
             }

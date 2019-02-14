@@ -80,22 +80,3 @@ public enum Result<Value, Error: Swift.Error> {
 }
 }
 
-////    
-////    public static func lift<Value>(_ value: Value) -> Result<Value> {
-////        return .success(value)
-////    }
-////    
-////    public static func lift<Error: Swift.Error>(_ error: Error) -> Result<Error> {
-////        return .error(error)
-////    }
-////    
-//    public func map<NewValue>(_ transform: (Value) -> NewValue) -> Result<NewValue, Error> {
-//        switch self {
-//            case let .success(value):
-//                return Result<NewValue, Error>(success: transform(value), error: nil, default: ResultErrors.couldNotInitialize) 
-//            case let .error(error):
-//                return Result<NewValue>(success: nil, error: error, default: ResultErrors.couldNotInitialize)
-//        }
-//    }
-//}
-//

@@ -15,9 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let urlSession = URLSessionTask()
-        let countriesNetworkService = CountriesNetworkService(task: urlSession)
-        let weatherNetworkService = WeatherNetworkService(task: urlSession)
+        let session = URLSession.init(configuration: .default)
+
+        let countriesNetworkService = CountriesNetworkService(session: session)
+        let weatherNetworkService = WeatherNetworkService(session: session)
         let rootViewController = CountriesViewController(countriesManager: countriesNetworkService, weatherManager: weatherNetworkService)
         
         let navigationController = UINavigationController(rootViewController: rootViewController)

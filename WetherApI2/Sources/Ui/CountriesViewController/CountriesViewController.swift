@@ -75,7 +75,7 @@ extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let country = self.model[indexPath.row]
-        let weatherViewController = WeatherViewController(city: country, wetherManeger: self.weatherManager)
+        let weatherViewController = WeatherViewController(city: country, weatherManeger: self.weatherManager)
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
 }

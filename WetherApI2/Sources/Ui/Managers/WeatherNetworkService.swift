@@ -14,39 +14,27 @@ fileprivate struct Constant {
 }
 
 
-class WeatherNetworkService: RequestServiceType {
-    var task: URLSessionTask
-    var isCancelled = false
-    
-    init(task: URLSessionTask) {
-        self.task = task
-    }
+class WeatherNetworkService: RequestService {
     private let parser = ParserWeather()
     
-    public func getWeather(country: Country, completion: @escaping Closure.Execute<Weather>) {
+    public func getWeather(country: Country, completion: @escaping Closure.Execute<Weather>) -> NetworkTask? {
         let capital = country.capital
         let convertUrl = capital!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let baseUrl = convertUrl.map { Constant.mainUrl + $0 + Constant.apiKey}
         
-        baseUrl
+       return baseUrl
             .flatMap(URL.init)
-            .do  { url in 
-            self.requestData(url: url) { (result: Result) in 
-                result.map { data in 
-                    self.parser.convert(data: data!)
-                        .map { weather in 
-                            country.weather? = weather
-                            completion(weather)
+            .map { 
+                self.requestData(url: $0) {
+                    _ = $0.map { 
+                        self.parser
+                            .convert(data: $0!)
+                            .map { 
+                                country.weather = $0
+                                completion($0)
+                            }
                     }
                 }
-            }
         }
-    }
-    func cancel() {
-        if self.task.state == .running {
-            self.task.cancel()
-        }
-        self.isCancelled = true
-    }
-    
+    }    
 }
