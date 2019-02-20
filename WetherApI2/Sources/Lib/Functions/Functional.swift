@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public func identity<Value>(_ value: Value) -> Value {
     return value
 }
@@ -74,4 +73,16 @@ public func side<Value>(action: @escaping (inout Value) -> ()) -> (Value) -> (Va
 
 public func scope(action: () -> ()) {
     action()
+}
+
+public func call<Value>(action: () -> Value) -> Value {
+    return action()
+}
+
+public func typeString<Object>(_ type: Object.Type) -> String {
+    return String(describing: type)
+}
+
+public func typeString<Value>(_ value: Value) -> String {
+    return typeString(type(of: value))
 }

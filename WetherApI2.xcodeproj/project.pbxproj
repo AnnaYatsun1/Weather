@@ -15,6 +15,10 @@
 		3F0FB11A220C6220009BCEC4 /* ParserWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB119220C6220009BCEC4 /* ParserWeather.swift */; };
 		3F0FB11C220C6334009BCEC4 /* CountriesNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */; };
 		3F0FB11E220C63BE009BCEC4 /* WeatherNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB11D220C63BE009BCEC4 /* WeatherNetworkService.swift */; };
+		3F2DC761221D60DA000B5CD2 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC760221D60DA000B5CD2 /* Provider.swift */; };
+		3F2DC763221D6109000B5CD2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC762221D6109000B5CD2 /* DataService.swift */; };
+		3F2DC765221D6232000B5CD2 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC764221D6232000B5CD2 /* Realm+Extensions.swift */; };
+		3F2DC767221D62DE000B5CD2 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC766221D62DE000B5CD2 /* WeakBox.swift */; };
 		3F6BF55821FB3F5100F15F2A /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BF55721FB3F5100F15F2A /* RequestService.swift */; };
 		3F970A8121FEF8490012F1B7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A8021FEF8490012F1B7 /* Model.swift */; };
 		3F970A8321FEFBD10012F1B7 /* ArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A8221FEFBD10012F1B7 /* ArrayModel.swift */; };
@@ -76,6 +80,10 @@
 		3F0FB119220C6220009BCEC4 /* ParserWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserWeather.swift; sourceTree = "<group>"; };
 		3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesNetworkService.swift; sourceTree = "<group>"; };
 		3F0FB11D220C63BE009BCEC4 /* WeatherNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkService.swift; sourceTree = "<group>"; };
+		3F2DC760221D60DA000B5CD2 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		3F2DC762221D6109000B5CD2 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		3F2DC764221D6232000B5CD2 /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
+		3F2DC766221D62DE000B5CD2 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
 		3F6BF55721FB3F5100F15F2A /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		3F970A8021FEF8490012F1B7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3F970A8221FEFBD10012F1B7 /* ArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayModel.swift; sourceTree = "<group>"; };
@@ -253,6 +261,7 @@
 				3FD670A121ECA3F300D31897 /* ObservableObject.Observer.swift */,
 				3FD670A221ECA3F300D31897 /* Atomic.swift */,
 				3FD6711F21F5BA0900D31897 /* Result.swift */,
+				3F2DC766221D62DE000B5CD2 /* WeakBox.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -304,6 +313,7 @@
 				3FD670B121ECA3F300D31897 /* UITableView+Extensions.swift */,
 				3FD670B221ECA3F300D31897 /* UIView+Sizes.swift */,
 				3F0AFEAF2215876000319984 /* NetworkTask+Extensions.swift */,
+				3F2DC764221D6232000B5CD2 /* Realm+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -340,6 +350,7 @@
 				3FD670C021ECA3F300D31897 /* Identifiable.swift */,
 				3FD670C121ECA3F300D31897 /* Synchronizable.swift */,
 				3FD670DD21ECA41100D31897 /* ModelDelegate.swift */,
+				3F2DC760221D60DA000B5CD2 /* Provider.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -384,6 +395,7 @@
 				3F0AFEAD221411B000319984 /* NetworkTask.swift */,
 				3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */,
 				3F0FB11D220C63BE009BCEC4 /* WeatherNetworkService.swift */,
+				3F2DC762221D6109000B5CD2 /* DataService.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -533,7 +545,9 @@
 				3FD6711C21F0962D00D31897 /* CountryAPI.swift in Sources */,
 				3FD670C221ECA3F300D31897 /* ObservableObject.swift in Sources */,
 				3FD670EB21ECC10E00D31897 /* Weather.swift in Sources */,
+				3F2DC761221D60DA000B5CD2 /* Provider.swift in Sources */,
 				3FD670D121ECA3F400D31897 /* NSLocking+Do.swift in Sources */,
+				3F2DC763221D6109000B5CD2 /* DataService.swift in Sources */,
 				3FD670D221ECA3F400D31897 /* Sequence+Array.swift in Sources */,
 				3F0AFEB02215876000319984 /* NetworkTask+Extensions.swift in Sources */,
 				3FD670DA21ECA3F400D31897 /* Cancellable.swift in Sources */,
@@ -558,12 +572,14 @@
 				3FD670CE21ECA3F400D31897 /* UINib+Init.swift in Sources */,
 				3FD670DC21ECA3F400D31897 /* Synchronizable.swift in Sources */,
 				3FD670C821ECA3F400D31897 /* Closure.swift in Sources */,
+				3F2DC765221D6232000B5CD2 /* Realm+Extensions.swift in Sources */,
 				3F0FB11E220C63BE009BCEC4 /* WeatherNetworkService.swift in Sources */,
 				3F0FB11C220C6334009BCEC4 /* CountriesNetworkService.swift in Sources */,
 				3FD6709621ECA2E700D31897 /* CountriesViewController.swift in Sources */,
 				3F0AFEAE221411B000319984 /* NetworkTask.swift in Sources */,
 				3FD6711121EF2BA000D31897 /* Country.swift in Sources */,
 				3FD670D321ECA3F400D31897 /* DispatchTime+After.swift in Sources */,
+				3F2DC767221D62DE000B5CD2 /* WeakBox.swift in Sources */,
 				3FD670C621ECA3F400D31897 /* ColorRepresentable.swift in Sources */,
 				3FD670D921ECA3F400D31897 /* Conditions.swift in Sources */,
 				3FD670D421ECA3F400D31897 /* Optional+Extensions.swift in Sources */,
