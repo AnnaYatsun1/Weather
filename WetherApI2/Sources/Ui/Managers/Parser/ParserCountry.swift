@@ -12,6 +12,6 @@ class ParserCountry: Parser<[CountryAPI]> {
    
     public func convert(data: Data) -> Result<[Country], ParserErrors> {
       return self.object(from: data)
-        .map {  $0.map { Country(name: $0.name, capital: $0.capital) }} 
+        .map {  $0.map { Country(name: $0.name, capital: $0.capital, id: $0.alpha2Code) }} 
     }
 }

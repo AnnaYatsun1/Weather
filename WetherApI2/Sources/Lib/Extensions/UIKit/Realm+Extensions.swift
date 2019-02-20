@@ -18,33 +18,23 @@ public extension Realm {
     
     public static var current: Realm? {
         let key = Key.realmThread
-        let thread = Thread.current        
+        let thread = Thread.current
+        
         return thread.threadDictionary[key]
-            .flatMap {$0  as? WeakBox<Realm> }
+            .flatMap { $0 as? WeakBox<Realm> }
             .flatMap { $0.wrapped }
             ?? call {
                 (try? Realm()).map(
-                    side { thread.threadDictionary[key] = WeakBox($0)}
+                    side { thread.threadDictionary[key] = WeakBox($0) }
                 )
         }
     }
     
-    
-    public static func write(action: (Realm) -> ()) {
-        self.current.do { realm in 
-            if realm.isInWriteTransaction {
-                action(realm)
-            } else {
-                try? realm.write {
-                    action(realm)
-                }
-            }
-            
-        }
+    public static func write(_ action: (Realm) -> ()) {
+        self.current.do { $0.writeObject(action) }
     }
     
-    
-    public func write(_ action: (Realm) -> ()) {
+    public func writeObject(_ action: (Realm) -> ()) {
         if self.isInWriteTransaction {
             action(self)
         } else {

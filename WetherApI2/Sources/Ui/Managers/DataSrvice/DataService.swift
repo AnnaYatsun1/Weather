@@ -9,6 +9,7 @@
 import RealmSwift
 
 class DataService: Provider {
+    
     typealias DatabaseObject = RealmSwift.Object
     
     private let realm: Realm?
@@ -17,11 +18,13 @@ class DataService: Provider {
         self.realm = database
     }
     
-    func getObjects(type: Object.Type) -> Result<[Object], DatabaseError> {
+    func getObjects<T: Object>(type: T.Type) -> Result<[T], DatabaseError> {
         
         let results = self.realm?.objects(type)
-        
-        if let results = results {
+//        let results_ = self.realm?.objects(type).array()
+
+    
+        if let results = results { //TODO: Fix with optional chaining, or remove second return
             return results.isEmpty ? Result(error: .error) : Result(value: results.array())
         } else {
             return Result(error: .error)
@@ -33,28 +36,28 @@ class DataService: Provider {
             print("instance not available")
             return nil
         }
-      
+//        self.realm?.writeObject {
+//            $0.object(ofType: type, forPrimaryKey: key)
+//        }
         return database.object(ofType: type, forPrimaryKey: key)
     }
     
     func delete(object: Object) {
-            try? self.realm?.write {
-                print("data: \(object.description)")
-                self.realm?.delete(object)
+        self.realm?.writeObject { 
+            $0.delete(object)
+            print("data: \(object.description)")
         } 
     }
     
     func save(object: Object) {
-        try?  self.realm?.write {
-            print("\(object.description)")
-            self.realm?.add(object, update: true)
+        self.realm?.writeObject { 
+            $0.add(object, update: true)
         }
     }
     
     func save(objects: [Object]) {
-        try? self.realm?.write {
-            print("data: \(Array(objects).description) ")
-            self.realm?.add(objects, update: true)
+       self.realm?.writeObject {
+            $0.add(objects, update: true)
         }
     }
 }

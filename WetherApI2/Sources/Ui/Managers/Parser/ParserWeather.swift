@@ -11,7 +11,7 @@ import Foundation
 class ParserWeather: Parser<WeatherAPI> {
     public func convert(data: Data) -> Result<Weather, ParserErrors> {
         return self.object(from: data)
-            .map { Weather(temperature: $0.main.temp) } 
+            .map { Weather(temperature: $0.main.temp, id: $0.sys.country) } 
     }
 }
 

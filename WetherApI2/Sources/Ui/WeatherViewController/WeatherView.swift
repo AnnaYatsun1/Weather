@@ -17,6 +17,6 @@ class WeatherView: UIView {
     
     func fill(with model: Model<Country>) {
         self.infoLabel?.text = model.value.name
-        self.temperatura?.text = model.value.weather?.temperature?.description
+        self.temperatura?.text = model.value.weather?.temperature.description
     }
 }

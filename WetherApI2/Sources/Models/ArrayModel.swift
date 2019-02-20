@@ -51,7 +51,6 @@ class ArrayModel<T: AnyObject>: ObservableObject<Event> {
         model.observer(handler: self.notify)
 
         return model
-        
     }
 }
 

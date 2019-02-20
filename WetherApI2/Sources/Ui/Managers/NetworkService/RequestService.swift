@@ -22,8 +22,7 @@ protocol RequestServiceType {
     func requestData(url: URL, completion: @escaping (Result<Data?, APPError>) -> Void) -> NetworkTask
 }
 
-class RequestService: RequestServiceType {
-
+class RequestService: RequestServiceType { //TODO: second RequestServiceType with alamofire session 
 
     private(set) var session: URLSession
     
@@ -32,7 +31,7 @@ class RequestService: RequestServiceType {
     }
     
     func requestData(url: URL, completion: @escaping (Result<Data?, APPError>) -> Void) -> NetworkTask {
-
+//        self.requestData(url: <#T##URL#>, completion: <#T##(Result<Data?, APPError>) -> Void#>)
         let requestN = request(url).response { response in 
             completion(
                 Result(
@@ -41,13 +40,12 @@ class RequestService: RequestServiceType {
                     default: APPError.dataNotFound)
             )
         }
+        
         defer {
             requestN.resume()
         }
         
-        
         return requestN.task.map(NetworkTask.init) ?? .cancelled()
-        
     }
 }
 

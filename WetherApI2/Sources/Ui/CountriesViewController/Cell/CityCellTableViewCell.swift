@@ -22,7 +22,7 @@ class CityCellTableViewCell: UITableViewCell {
         
         self.countryLable?.text = country.name
         self.cityLabel?.text = country.capital
-        self.temperature?.text = country.weather?.temperature?.description
+        self.temperature?.text = country.weather?.temperature.description
 //        self.data?.text = country.weather?.main?.temperature?.description
     }
     
