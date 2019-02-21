@@ -25,6 +25,8 @@
 		3F2DC772221D98D8000B5CD2 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC771221D98D8000B5CD2 /* RequestService.swift */; };
 		3F2DC774221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC773221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift */; };
 		3F2DC776221D992D000B5CD2 /* ForRequestServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC775221D992D000B5CD2 /* ForRequestServiceType.swift */; };
+		3F2DC779221E9FDA000B5CD2 /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC778221E9FDA000B5CD2 /* ID.swift */; };
+		3F2DC77B221EA01C000B5CD2 /* IDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC77A221EA01C000B5CD2 /* IDProvider.swift */; };
 		3F6BF55821FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BF55721FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift */; };
 		3F970A8121FEF8490012F1B7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A8021FEF8490012F1B7 /* Model.swift */; };
 		3F970A8321FEFBD10012F1B7 /* ArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A8221FEFBD10012F1B7 /* ArrayModel.swift */; };
@@ -96,6 +98,8 @@
 		3F2DC771221D98D8000B5CD2 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		3F2DC773221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForRequestServiceTypeAlamofire.swift; sourceTree = "<group>"; };
 		3F2DC775221D992D000B5CD2 /* ForRequestServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForRequestServiceType.swift; sourceTree = "<group>"; };
+		3F2DC778221E9FDA000B5CD2 /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
+		3F2DC77A221EA01C000B5CD2 /* IDProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDProvider.swift; sourceTree = "<group>"; };
 		3F6BF55721FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestServiceTypeForAlamofire.swift; sourceTree = "<group>"; };
 		3F970A8021FEF8490012F1B7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3F970A8221FEFBD10012F1B7 /* ArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayModel.swift; sourceTree = "<group>"; };
@@ -205,6 +209,15 @@
 			path = DataSrvice;
 			sourceTree = "<group>";
 		};
+		3F2DC777221E9FBB000B5CD2 /* ID */ = {
+			isa = PBXGroup;
+			children = (
+				3F2DC778221E9FDA000B5CD2 /* ID.swift */,
+				3F2DC77A221EA01C000B5CD2 /* IDProvider.swift */,
+			);
+			path = ID;
+			sourceTree = "<group>";
+		};
 		3F970A8621FF22130012F1B7 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +278,7 @@
 		3FD6709321ECA2B600D31897 /* Ui */ = {
 			isa = PBXGroup;
 			children = (
+				3F2DC777221E9FBB000B5CD2 /* ID */,
 				3FD6711221EF4DF400D31897 /* Managers */,
 				3FD670E621ECBF8F00D31897 /* CountriesViewController */,
 				3FD670E721ECBFAB00D31897 /* WeatherViewController */,
@@ -583,6 +597,7 @@
 				3F970A8121FEF8490012F1B7 /* Model.swift in Sources */,
 				3F2DC776221D992D000B5CD2 /* ForRequestServiceType.swift in Sources */,
 				3FD670CD21ECA3F400D31897 /* UITableViewCell+AutoReuseIdentifier.swift in Sources */,
+				3F2DC77B221EA01C000B5CD2 /* IDProvider.swift in Sources */,
 				3FD670C421ECA3F400D31897 /* ObservableObject.Observer.swift in Sources */,
 				3FD670D621ECA3F400D31897 /* Cast.swift in Sources */,
 				3FD6711C21F0962D00D31897 /* CountryAPI.swift in Sources */,
@@ -591,6 +606,7 @@
 				3FD670EB21ECC10E00D31897 /* Weather.swift in Sources */,
 				3F2DC761221D60DA000B5CD2 /* Provider.swift in Sources */,
 				3FD670D121ECA3F400D31897 /* NSLocking+Do.swift in Sources */,
+				3F2DC779221E9FDA000B5CD2 /* ID.swift in Sources */,
 				3F2DC763221D6109000B5CD2 /* DataService.swift in Sources */,
 				3FD670D221ECA3F400D31897 /* Sequence+Array.swift in Sources */,
 				3F0AFEB02215876000319984 /* NetworkTask+Extensions.swift in Sources */,

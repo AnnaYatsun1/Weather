@@ -50,7 +50,9 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.table?.register(CityCellTableViewCell.self)
-        self.countriesManager.getCountries(self.model)
+        self.countriesManager.getCountries(self.model) { _ in 
+            print()
+        }
     }
 }
 
