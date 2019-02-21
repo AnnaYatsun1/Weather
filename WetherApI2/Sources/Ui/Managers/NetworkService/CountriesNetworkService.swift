@@ -19,48 +19,28 @@ class CountriesNetworkService: RequestServiceTypeForAlamofire {
     private let model = ArrayModel(values: [Country]())
     private let parser = ParserCountry()
     private let databaseCountry = CountriesDatabaseService()
-    public func getCountries(_ countrys: ArrayModel<Country>, completion: @escaping Closure.Execute<[Country]>) -> NetworkTask?  {
+    public func getCountries(_ countrys: ArrayModel<Country>, completion: @escaping Closure.Execute<[Country]?>) -> NetworkTask?  {
 
             let urlCountry = URL(string: Constant.mainUrl)
             return  urlCountry.map { 
                 requestData(url: $0) {  dataResult in
                   _ =  dataResult.map { 
-                                let parsed = self.parser.convert(data: $0!)
-                    
-                                let countries =  parsed.analysis(
-                                    success: { couuntry in
-                                        countrys.addAll(values: couuntry)
-                                        self.save(countries: couuntry)
-                                }, 
-                                    failure: { _ in 
-                                        _  = self.databaseCountry.getObjects(type: CountryRLM.self).map { contries in 
-                                            contries.forEach { country in
-                                               Country(countryRLM: country)
-                                        }
-                                    }
-                                } 
-                                
-                            )
-//                            completion(countries)
+                        let countries =  self.parser.convert(data: $0!).analysis(
+                            success: { 
+                                countrys.addAll(values: $0)
+                                return self.success(countries: $0)
+                                    }, 
+                                failure: { _ in self.databaseCountry.loadCities() } 
+                                )
+                            completion(countries)
                         }
                     }
                 }
             }
-    private func save(countries: [Country]) -> () {
-        countries.forEach { country in 
-            let countris = CountryRLM(name: country.name, capital: country.capital, id: country.id)
-            self.databaseCountry.save(object: countris)
-        } 
-    }
     
-//    private func cached() -> [Country] {
-//        return self.databaseCountry
-//            .getObjects(type: CountryRLM.self)
-//            .map {
-//                $0.map{
-//                    Country(countryRLM: $0)
-//            }
-//        }
-//    }
+    func success(countries: [Country]) -> [Country] {
+        self.databaseCountry.save(countries: countries)
+        return countries
+    }
 }
 

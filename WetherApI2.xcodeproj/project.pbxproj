@@ -202,8 +202,8 @@
 		3F2DC76A221D658A000B5CD2 /* DataSrvice */ = {
 			isa = PBXGroup;
 			children = (
-				3F2DC76D221D7178000B5CD2 /* CountriesDatabaseService.swift */,
 				3F2DC762221D6109000B5CD2 /* DataService.swift */,
+				3F2DC76D221D7178000B5CD2 /* CountriesDatabaseService.swift */,
 				3F2DC76F221D888D000B5CD2 /* WeatherDatabaseService.swift */,
 			);
 			path = DataSrvice;

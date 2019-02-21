@@ -17,50 +17,34 @@ fileprivate struct Constant {
 class WeatherNetworkService: RequestServiceTypeForAlamofire {
     
     private let parser = ParserWeather()
-    private let databaseCountry = WeatherDatabaseService()
+    private let databaseWeather = WeatherDatabaseService()
     
     public func getWeather(country: Country, completion: @escaping Closure.Execute<Weather?>) -> NetworkTask? {
         return self.getUrl(country: country).map { url in
             self.requestData(url: url) { dataResult in
                 _ = dataResult.map { 
-                    let parsed = self.parser.convert(data: $0!)
-                    
-                    let weather = parsed.analysis(
-                            success: {
-                                self.save($0, country: country)
-                                return $0
-                            },
-                            failure: { _ in 
-                                self.cached(country)
-                            }
+            
+                    let weather = self.parser.convert(data: $0!).analysis(
+                            success: { self.success(weather: $0, countries: country) },
+                            failure: { _ in self.databaseWeather.loadWeather(country: country) }
                     )
                     completion(weather)
                 }
-                
             }
         }
     }    
     
-    
-    private func save(_ weather: Weather, country: Country) -> () {
-        country.weather = weather
-        let weather = WeatherRLM_(weather: weather) //delite _
-        self.databaseCountry.save(object: weather)
-    }
-    
-    
-    private func cached(_ country: Country) -> Weather? {
-        return self.databaseCountry
-            .get(type: WeatherRLM_.self, key: country.id)
-            .flatMap { Weather(weatherRLM: $0) }
-    }
-    
-    func getUrl(country: Country) -> URL? {
+    private func getUrl(country: Country) -> URL? {
         let capital = country.capital
         let convertUrl = capital.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let baseUrl = convertUrl.map { Constant.mainUrl + $0 + Constant.apiKey}
         let url = baseUrl.flatMap(URL.init)
         
         return url
+    } 
+    
+    private func success(weather: Weather, countries: Country) -> Weather {
+        self.databaseWeather.saveWeather(weather, country: countries)
+        return weather
     }
 }

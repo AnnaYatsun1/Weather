@@ -44,6 +44,14 @@ public enum Result<Value, Error: Swift.Error> {
     public var result: Result<Value, Error> {
         return self.analysis(success: {Result(value: $0)}, failure: {Result(error: $0)} )
     }
+    
+    public var value: Value? {
+        return self.analysis(success: identity, failure: alwaysNil)
+    }
+    
+    public var error: Error? {
+        return self.analysis(success: alwaysNil, failure: identity)
+    }
 
     public func analysis<Return>(success: (Value) -> Return, failure: (Error) -> Return) -> Return {
         switch self {

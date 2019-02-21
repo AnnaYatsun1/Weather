@@ -11,16 +11,15 @@ import RealmSwift
 class DataService: Provider {
     
     typealias DatabaseObject = RealmSwift.Object
+    typealias DatabaseRealm = () -> Realm?
     
     private let realm: () -> Realm?
     
-    init(database: @escaping () -> Realm? = { Realm.current }) {
+    init(database: @escaping DatabaseRealm = { Realm.current }) {
         self.realm = database
     }
     
-
     func getObjects<T: Object>(type: T.Type) -> Result<[T], DatabaseError> {
-        
         return Result(
             success: self.realm()?.objects(type).array(), 
             error: .error, 
@@ -29,18 +28,12 @@ class DataService: Provider {
     }
     
     func get<T: Object>(type: T.Type, key: String) -> T? {
-        guard let database = self.realm() else {
-            print("instance not available")
-            return nil
-        }
-        
-        return database.object(ofType: type, forPrimaryKey: key)
+        return self.realm()?.object(ofType: type, forPrimaryKey: key)
     }
     
     func delete(object: Object) {
         self.realm()?.writeObject { 
             $0.delete(object)
-            print("data: \(object.description)")
         } 
     }
     
