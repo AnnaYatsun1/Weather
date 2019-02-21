@@ -9,6 +9,7 @@
 import Foundation
 
 public typealias IDProvider = () -> ID
+public typealias IDStartValueAction = ((Int) -> ())?
 
 fileprivate let persistentProviders = Atomic([String: IDProvider]())
 

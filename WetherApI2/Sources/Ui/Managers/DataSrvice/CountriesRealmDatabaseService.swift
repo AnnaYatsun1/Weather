@@ -13,11 +13,8 @@ class CountriesDatabaseService: RealmDataService, CountriesDatabaseServiceProtoc
     func loadCities() -> [Country]? {
         var countries = [Country]()
         
-        self.getObjects(type: CountryRLM.self)
-            .value?
-            .forEach {
-                countries.append(Country(countryRLM: $0))
-            }
+        self.getObjects(type: CountryRLM.self)?
+            .forEach { countries.append(Country(countryRLM: $0)) }
         
         return countries
     }

@@ -16,7 +16,7 @@ public protocol DataServiceProtocol: class {
     
     associatedtype DatabaseObject  //  Weather of Counry etc
 
-    func getObjects(type: DatabaseObject.Type) -> Result<[DatabaseObject], DatabaseError>
+    func getObjects(type: DatabaseObject.Type) -> [DatabaseObject]?
     func get(type: DatabaseObject.Type, key: String) -> DatabaseObject?
     func delete(object: DatabaseObject)
     func save(object: DatabaseObject)

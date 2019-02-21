@@ -18,16 +18,14 @@ import  RealmSwift
         self.id = id
     }
     
-    convenience init(weatherRLM: WeatherRLM_) {
+    convenience init(weatherRLM: WeatherRLM) {
         self.init(temperature: weatherRLM.temperature.value!, id: weatherRLM.id)
     }
 }
 
-@objcMembers class WeatherRLM_: RLMModel {
+@objcMembers class WeatherRLM: RLMModel {
     
-    let temperature = RealmOptional<Double>()
-    
-//    public dynamic var temperature: Double? 
+   public dynamic var temperature = RealmOptional<Double>()
     
     convenience init(temperatura: Double? = nil, id: String) {
         self.init()
@@ -35,7 +33,6 @@ import  RealmSwift
         self.id = id
     }
 
-    
     convenience init(weather: Weather) {
         self.init(temperatura: weather.temperature, id: weather.id!)
     }

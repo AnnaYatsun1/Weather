@@ -31,9 +31,9 @@ class Country {
     
     public dynamic var name: String?
     public dynamic var capital: String?
-    public dynamic var weather: WeatherRLM_?
-    
-    convenience init(name: String? = nil, capital: String? = nil, weather: WeatherRLM_? = nil, id: String) {
+    public dynamic var weather: WeatherRLM? 
+  
+    convenience init(name: String? = nil, capital: String? = nil, weather: WeatherRLM? = nil, id: String) {
         self.init()
         self.name = name
         self.capital = capital

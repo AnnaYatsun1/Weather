@@ -47,6 +47,7 @@ class ArrayModel<T: AnyObject>: ObservableObject<Event> {
     }
     
     subscript(index: Int) -> Model<T> {
+
         let model = Model(self.values[index])
         model.observer(handler: self.notify)
 

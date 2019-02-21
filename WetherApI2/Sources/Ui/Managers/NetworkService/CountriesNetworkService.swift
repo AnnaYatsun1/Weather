@@ -29,17 +29,19 @@ class CountriesNetworkService: RequestServiceTypeForAlamofire {
         
         return urlCountry.map { 
             requestData(url: $0) {  dataResult in
-                _ =  dataResult.map { 
-                    let countries =  self.parser.convert(data: $0!) //TODO: remove force unwrap
-                        .analysis(
-                            success: { 
-                                countrys.addAll(values: $0)
-                                return self.success(countries: $0)
+                _ =  dataResult.map { data in 
+                    data.do {
+                        let countries =  self.parser.convert(data: $0) //TODO: remove force unwrap
+                            .analysis(
+                                success: { 
+                                    countrys.addAll(values: $0)
+                                    return self.success(countries: $0)
                             }, 
-                            failure: { _ in self.databaseCountry.loadCities() } 
+                                failure: { _ in self.databaseCountry.loadCities() } 
                         )
-                    
-                    completion(countries)
+                        
+                        completion(countries)
+                    }
                 }
             }
         }

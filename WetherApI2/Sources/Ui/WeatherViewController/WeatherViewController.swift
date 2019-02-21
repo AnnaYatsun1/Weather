@@ -30,11 +30,10 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let country = self.wrappedCity.value
-        self.weatherManeger.getWeather(country: country) { weather in 
-            
+        self.weatherManeger.getWeather(country: self.wrappedCity.value) { weather in 
             self.wrappedCity.modify {
                 $0.weather = weather
+                
             }
             
             self.updateUI()

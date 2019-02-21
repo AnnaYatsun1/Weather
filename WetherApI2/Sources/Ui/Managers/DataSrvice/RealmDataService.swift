@@ -19,12 +19,8 @@ class RealmDataService: DataServiceProtocol {
         self.realm = database
     }
     
-    func getObjects<T: Object>(type: T.Type) -> Result<[T], DatabaseError> {
-        return Result(
-            success: self.realm()?.objects(type).array(), 
-            error: .error, 
-            default: .error
-        )  
+    func getObjects<T: Object>(type: T.Type) -> [T]? {
+        return self.realm()?.objects(type).array() 
     }
     
     func get<T: Object>(type: T.Type, key: String) -> T? {
@@ -46,6 +42,12 @@ class RealmDataService: DataServiceProtocol {
     func save(objects: [Object]) {
       self.realm()?.writeObject { 
             $0.add(objects, update: true)
+        }
+    }
+    
+    public func update<T: Object>(object: T, action: (T) -> ()) {
+        self.realm()?.writeObject { _ in
+            action(object)
         }
     }
 }

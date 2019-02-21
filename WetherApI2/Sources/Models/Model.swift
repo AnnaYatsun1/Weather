@@ -9,10 +9,7 @@
 import Foundation
 
 class Model<Value>: ObservableObject<Event> {
-   
-//    typealias PropertyObserver = (Event) -> ()
-//    private var observer = CancellableObject()
-    
+       
     var value: Value {
         get { return self.mutableValue }
         set { self.modify { $0 = newValue } }
