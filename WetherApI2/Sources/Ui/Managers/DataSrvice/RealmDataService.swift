@@ -1,5 +1,5 @@
 //
-//  DataService.swift
+//  RealmDataService.swift
 //  WetherApI2
 //
 //  Created by Anna Yatsun on 20/02/2019.
@@ -8,9 +8,9 @@
 
 import RealmSwift
 
-class DataService: Provider {
+
+class RealmDataService: DataServiceProtocol {
     
-    typealias DatabaseObject = RealmSwift.Object
     typealias DatabaseRealm = () -> Realm?
     
     private let realm: () -> Realm?

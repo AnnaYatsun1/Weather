@@ -18,25 +18,32 @@ class CountriesNetworkService: RequestServiceTypeForAlamofire {
 
     private let model = ArrayModel(values: [Country]())
     private let parser = ParserCountry()
-    private let databaseCountry = CountriesDatabaseService()
+    private var databaseCountry: CountriesDatabaseServiceProtocol
+    
+    init(databaseCountry: CountriesDatabaseServiceProtocol) {
+        self.databaseCountry = databaseCountry
+    }
+    
     public func getCountries(_ countrys: ArrayModel<Country>, completion: @escaping Closure.Execute<[Country]?>) -> NetworkTask?  {
-
-            let urlCountry = URL(string: Constant.mainUrl)
-            return  urlCountry.map { 
-                requestData(url: $0) {  dataResult in
-                  _ =  dataResult.map { 
-                        let countries =  self.parser.convert(data: $0!).analysis(
+        let urlCountry = URL(string: Constant.mainUrl)
+        
+        return urlCountry.map { 
+            requestData(url: $0) {  dataResult in
+                _ =  dataResult.map { 
+                    let countries =  self.parser.convert(data: $0!) //TODO: remove force unwrap
+                        .analysis(
                             success: { 
                                 countrys.addAll(values: $0)
                                 return self.success(countries: $0)
-                                    }, 
-                                failure: { _ in self.databaseCountry.loadCities() } 
-                                )
-                            completion(countries)
-                        }
-                    }
+                            }, 
+                            failure: { _ in self.databaseCountry.loadCities() } 
+                        )
+                    
+                    completion(countries)
                 }
             }
+        }
+    }
     
     func success(countries: [Country]) -> [Country] {
         self.databaseCountry.save(countries: countries)

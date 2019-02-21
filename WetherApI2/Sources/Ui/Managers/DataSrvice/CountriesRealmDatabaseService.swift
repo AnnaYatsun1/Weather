@@ -8,21 +8,25 @@
 
 import Foundation
 
-class CountriesDatabaseService: DataService {
+class CountriesDatabaseService: RealmDataService, CountriesDatabaseServiceProtocol {
     
     func loadCities() -> [Country]? {
         var countries = [Country]()
-        self.getObjects(type: CountryRLM.self).value?
+        
+        self.getObjects(type: CountryRLM.self)
+            .value?
             .forEach {
                 countries.append(Country(countryRLM: $0))
             }
+        
         return countries
     }
     
     func save(countries: [Country]) {
         countries.forEach { country in 
             let countris = CountryRLM(name: country.name, capital: country.capital, id: country.id)
-          self.save(object: countris)
+            self.save(object: countris)
         }
     }
 }
+

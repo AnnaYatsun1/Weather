@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WeatherDatabaseService: DataService {
+class WeatherDatabaseService: RealmDataService, WeatherDatabaseServiceProtocol {
     
     public func loadWeather(country: Country) -> Weather? {
         return self.get(type: WeatherRLM_.self, key: country.id)

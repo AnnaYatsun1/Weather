@@ -11,7 +11,7 @@ import  RealmSwift
 
  class Weather {
     public var temperature: Double
-    public var id: String
+    public var id: String?
     
     init(temperature: Double, id: String) {
         self.temperature = temperature
@@ -34,8 +34,9 @@ import  RealmSwift
         self.temperature.value = temperatura
         self.id = id
     }
+
     
     convenience init(weather: Weather) {
-        self.init(temperatura: weather.temperature, id: weather.id)
+        self.init(temperatura: weather.temperature, id: weather.id!)
     }
 }

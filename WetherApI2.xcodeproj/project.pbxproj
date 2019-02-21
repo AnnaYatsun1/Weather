@@ -15,18 +15,20 @@
 		3F0FB11A220C6220009BCEC4 /* ParserWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB119220C6220009BCEC4 /* ParserWeather.swift */; };
 		3F0FB11C220C6334009BCEC4 /* CountriesNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */; };
 		3F0FB11E220C63BE009BCEC4 /* WeatherNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FB11D220C63BE009BCEC4 /* WeatherNetworkService.swift */; };
-		3F2DC761221D60DA000B5CD2 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC760221D60DA000B5CD2 /* Provider.swift */; };
-		3F2DC763221D6109000B5CD2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC762221D6109000B5CD2 /* DataService.swift */; };
+		3F2DC761221D60DA000B5CD2 /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC760221D60DA000B5CD2 /* DataServiceProtocol.swift */; };
+		3F2DC763221D6109000B5CD2 /* RealmDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC762221D6109000B5CD2 /* RealmDataService.swift */; };
 		3F2DC765221D6232000B5CD2 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC764221D6232000B5CD2 /* Realm+Extensions.swift */; };
 		3F2DC767221D62DE000B5CD2 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC766221D62DE000B5CD2 /* WeakBox.swift */; };
 		3F2DC76C221D682F000B5CD2 /* RLMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC76B221D682F000B5CD2 /* RLMModel.swift */; };
-		3F2DC76E221D7178000B5CD2 /* CountriesDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC76D221D7178000B5CD2 /* CountriesDatabaseService.swift */; };
-		3F2DC770221D888D000B5CD2 /* WeatherDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC76F221D888D000B5CD2 /* WeatherDatabaseService.swift */; };
+		3F2DC76E221D7178000B5CD2 /* CountriesRealmDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC76D221D7178000B5CD2 /* CountriesRealmDatabaseService.swift */; };
+		3F2DC770221D888D000B5CD2 /* WeatherRealmDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC76F221D888D000B5CD2 /* WeatherRealmDatabaseService.swift */; };
 		3F2DC772221D98D8000B5CD2 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC771221D98D8000B5CD2 /* RequestService.swift */; };
 		3F2DC774221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC773221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift */; };
 		3F2DC776221D992D000B5CD2 /* ForRequestServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC775221D992D000B5CD2 /* ForRequestServiceType.swift */; };
 		3F2DC779221E9FDA000B5CD2 /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC778221E9FDA000B5CD2 /* ID.swift */; };
 		3F2DC77B221EA01C000B5CD2 /* IDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC77A221EA01C000B5CD2 /* IDProvider.swift */; };
+		3F2DC77F221ED3C9000B5CD2 /* CountriesDatabaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC77E221ED3C9000B5CD2 /* CountriesDatabaseServiceProtocol.swift */; };
+		3F2DC781221ED3E2000B5CD2 /* WeatherDatabaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC780221ED3E2000B5CD2 /* WeatherDatabaseServiceProtocol.swift */; };
 		3F6BF55821FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BF55721FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift */; };
 		3F970A8121FEF8490012F1B7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A8021FEF8490012F1B7 /* Model.swift */; };
 		3F970A8321FEFBD10012F1B7 /* ArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A8221FEFBD10012F1B7 /* ArrayModel.swift */; };
@@ -88,18 +90,20 @@
 		3F0FB119220C6220009BCEC4 /* ParserWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserWeather.swift; sourceTree = "<group>"; };
 		3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesNetworkService.swift; sourceTree = "<group>"; };
 		3F0FB11D220C63BE009BCEC4 /* WeatherNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkService.swift; sourceTree = "<group>"; };
-		3F2DC760221D60DA000B5CD2 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
-		3F2DC762221D6109000B5CD2 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		3F2DC760221D60DA000B5CD2 /* DataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceProtocol.swift; sourceTree = "<group>"; };
+		3F2DC762221D6109000B5CD2 /* RealmDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataService.swift; sourceTree = "<group>"; };
 		3F2DC764221D6232000B5CD2 /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
 		3F2DC766221D62DE000B5CD2 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
 		3F2DC76B221D682F000B5CD2 /* RLMModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMModel.swift; sourceTree = "<group>"; };
-		3F2DC76D221D7178000B5CD2 /* CountriesDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesDatabaseService.swift; sourceTree = "<group>"; };
-		3F2DC76F221D888D000B5CD2 /* WeatherDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDatabaseService.swift; sourceTree = "<group>"; };
+		3F2DC76D221D7178000B5CD2 /* CountriesRealmDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesRealmDatabaseService.swift; sourceTree = "<group>"; };
+		3F2DC76F221D888D000B5CD2 /* WeatherRealmDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRealmDatabaseService.swift; sourceTree = "<group>"; };
 		3F2DC771221D98D8000B5CD2 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		3F2DC773221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForRequestServiceTypeAlamofire.swift; sourceTree = "<group>"; };
 		3F2DC775221D992D000B5CD2 /* ForRequestServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForRequestServiceType.swift; sourceTree = "<group>"; };
 		3F2DC778221E9FDA000B5CD2 /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
 		3F2DC77A221EA01C000B5CD2 /* IDProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDProvider.swift; sourceTree = "<group>"; };
+		3F2DC77E221ED3C9000B5CD2 /* CountriesDatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesDatabaseServiceProtocol.swift; sourceTree = "<group>"; };
+		3F2DC780221ED3E2000B5CD2 /* WeatherDatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDatabaseServiceProtocol.swift; sourceTree = "<group>"; };
 		3F6BF55721FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestServiceTypeForAlamofire.swift; sourceTree = "<group>"; };
 		3F970A8021FEF8490012F1B7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3F970A8221FEFBD10012F1B7 /* ArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayModel.swift; sourceTree = "<group>"; };
@@ -202,9 +206,9 @@
 		3F2DC76A221D658A000B5CD2 /* DataSrvice */ = {
 			isa = PBXGroup;
 			children = (
-				3F2DC762221D6109000B5CD2 /* DataService.swift */,
-				3F2DC76D221D7178000B5CD2 /* CountriesDatabaseService.swift */,
-				3F2DC76F221D888D000B5CD2 /* WeatherDatabaseService.swift */,
+				3F2DC762221D6109000B5CD2 /* RealmDataService.swift */,
+				3F2DC76D221D7178000B5CD2 /* CountriesRealmDatabaseService.swift */,
+				3F2DC76F221D888D000B5CD2 /* WeatherRealmDatabaseService.swift */,
 			);
 			path = DataSrvice;
 			sourceTree = "<group>";
@@ -409,9 +413,11 @@
 				3FD670C021ECA3F300D31897 /* Identifiable.swift */,
 				3FD670C121ECA3F300D31897 /* Synchronizable.swift */,
 				3FD670DD21ECA41100D31897 /* ModelDelegate.swift */,
-				3F2DC760221D60DA000B5CD2 /* Provider.swift */,
+				3F2DC760221D60DA000B5CD2 /* DataServiceProtocol.swift */,
 				3F2DC773221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift */,
 				3F2DC775221D992D000B5CD2 /* ForRequestServiceType.swift */,
+				3F2DC77E221ED3C9000B5CD2 /* CountriesDatabaseServiceProtocol.swift */,
+				3F2DC780221ED3E2000B5CD2 /* WeatherDatabaseServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -594,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F2DC77F221ED3C9000B5CD2 /* CountriesDatabaseServiceProtocol.swift in Sources */,
 				3F970A8121FEF8490012F1B7 /* Model.swift in Sources */,
 				3F2DC776221D992D000B5CD2 /* ForRequestServiceType.swift in Sources */,
 				3FD670CD21ECA3F400D31897 /* UITableViewCell+AutoReuseIdentifier.swift in Sources */,
@@ -601,13 +608,13 @@
 				3FD670C421ECA3F400D31897 /* ObservableObject.Observer.swift in Sources */,
 				3FD670D621ECA3F400D31897 /* Cast.swift in Sources */,
 				3FD6711C21F0962D00D31897 /* CountryAPI.swift in Sources */,
-				3F2DC76E221D7178000B5CD2 /* CountriesDatabaseService.swift in Sources */,
+				3F2DC76E221D7178000B5CD2 /* CountriesRealmDatabaseService.swift in Sources */,
 				3FD670C221ECA3F300D31897 /* ObservableObject.swift in Sources */,
 				3FD670EB21ECC10E00D31897 /* Weather.swift in Sources */,
-				3F2DC761221D60DA000B5CD2 /* Provider.swift in Sources */,
+				3F2DC761221D60DA000B5CD2 /* DataServiceProtocol.swift in Sources */,
 				3FD670D121ECA3F400D31897 /* NSLocking+Do.swift in Sources */,
 				3F2DC779221E9FDA000B5CD2 /* ID.swift in Sources */,
-				3F2DC763221D6109000B5CD2 /* DataService.swift in Sources */,
+				3F2DC763221D6109000B5CD2 /* RealmDataService.swift in Sources */,
 				3FD670D221ECA3F400D31897 /* Sequence+Array.swift in Sources */,
 				3F0AFEB02215876000319984 /* NetworkTask+Extensions.swift in Sources */,
 				3F2DC772221D98D8000B5CD2 /* RequestService.swift in Sources */,
@@ -641,7 +648,7 @@
 				3FD6709621ECA2E700D31897 /* CountriesViewController.swift in Sources */,
 				3F0AFEAE221411B000319984 /* NetworkTask.swift in Sources */,
 				3FD6711121EF2BA000D31897 /* Country.swift in Sources */,
-				3F2DC770221D888D000B5CD2 /* WeatherDatabaseService.swift in Sources */,
+				3F2DC770221D888D000B5CD2 /* WeatherRealmDatabaseService.swift in Sources */,
 				3FD670D321ECA3F400D31897 /* DispatchTime+After.swift in Sources */,
 				3F2DC767221D62DE000B5CD2 /* WeakBox.swift in Sources */,
 				3FD670C621ECA3F400D31897 /* ColorRepresentable.swift in Sources */,
@@ -654,6 +661,7 @@
 				3FD670D721ECA3F400D31897 /* ToString.swift in Sources */,
 				3FD670C921ECA3F400D31897 /* CGSize+Extensions.swift in Sources */,
 				3FD6711A21F093A200D31897 /* WeatherAPI.swift in Sources */,
+				3F2DC781221ED3E2000B5CD2 /* WeatherDatabaseServiceProtocol.swift in Sources */,
 				3FD6709921ECA2FD00D31897 /* CountriesView.swift in Sources */,
 				3F970A8321FEFBD10012F1B7 /* ArrayModel.swift in Sources */,
 				3FD6712021F5BA0900D31897 /* Result.swift in Sources */,

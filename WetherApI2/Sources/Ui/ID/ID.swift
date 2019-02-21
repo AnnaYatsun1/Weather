@@ -35,7 +35,6 @@ public struct ID: Hashable, Comparable, CustomStringConvertible, ExpressibleByIn
         return lhs.value == rhs.value
     }
     
-
     public var hashValue: Int {
         return self.value.hashValue
     }

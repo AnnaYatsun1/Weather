@@ -17,7 +17,11 @@ fileprivate struct Constant {
 class WeatherNetworkService: RequestServiceTypeForAlamofire {
     
     private let parser = ParserWeather()
-    private let databaseWeather = WeatherDatabaseService()
+    private let databaseWeather: WeatherDatabaseServiceProtocol
+   
+    init(databaseWeather: WeatherDatabaseServiceProtocol) {
+        self.databaseWeather = databaseWeather
+    }
     
     public func getWeather(country: Country, completion: @escaping Closure.Execute<Weather?>) -> NetworkTask? {
         return self.getUrl(country: country).map { url in

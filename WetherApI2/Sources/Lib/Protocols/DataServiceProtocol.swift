@@ -1,5 +1,5 @@
 //
-//  Provider.swift
+//  DataServiceProtocol.swift
 //  WetherApI2
 //
 //  Created by Anna Yatsun on 20/02/2019.
@@ -12,9 +12,9 @@ public enum DatabaseError: Error {
     case error
 }
 
-public protocol Provider: class {
+public protocol DataServiceProtocol: class {
     
-    associatedtype DatabaseObject
+    associatedtype DatabaseObject  //  Weather of Counry etc
 
     func getObjects(type: DatabaseObject.Type) -> Result<[DatabaseObject], DatabaseError>
     func get(type: DatabaseObject.Type, key: String) -> DatabaseObject?
