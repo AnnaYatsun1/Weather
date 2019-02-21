@@ -12,51 +12,46 @@ class DataService: Provider {
     
     typealias DatabaseObject = RealmSwift.Object
     
-    private let realm: Realm?
+    private let realm: () -> Realm?
     
-    init(database: Realm? = Realm.current) {
+    init(database: @escaping () -> Realm? = { Realm.current }) {
         self.realm = database
     }
     
+
     func getObjects<T: Object>(type: T.Type) -> Result<[T], DatabaseError> {
         
-        let results = self.realm?.objects(type)
-//        let results_ = self.realm?.objects(type).array()
-
-    
-        if let results = results { //TODO: Fix with optional chaining, or remove second return
-            return results.isEmpty ? Result(error: .error) : Result(value: results.array())
-        } else {
-            return Result(error: .error)
-        }    
+        return Result(
+            success: self.realm()?.objects(type).array(), 
+            error: .error, 
+            default: .error
+        )  
     }
     
-    func get(type: Object.Type, key: String) -> Object? {
-        guard let database = self.realm else {
+    func get<T: Object>(type: T.Type, key: String) -> T? {
+        guard let database = self.realm() else {
             print("instance not available")
             return nil
         }
-//        self.realm?.writeObject {
-//            $0.object(ofType: type, forPrimaryKey: key)
-//        }
+        
         return database.object(ofType: type, forPrimaryKey: key)
     }
     
     func delete(object: Object) {
-        self.realm?.writeObject { 
+        self.realm()?.writeObject { 
             $0.delete(object)
             print("data: \(object.description)")
         } 
     }
     
     func save(object: Object) {
-        self.realm?.writeObject { 
+        self.realm()?.writeObject { 
             $0.add(object, update: true)
         }
     }
     
     func save(objects: [Object]) {
-       self.realm?.writeObject {
+      self.realm()?.writeObject { 
             $0.add(objects, update: true)
         }
     }

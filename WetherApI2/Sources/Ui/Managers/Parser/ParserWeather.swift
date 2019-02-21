@@ -13,5 +13,10 @@ class ParserWeather: Parser<WeatherAPI> {
         return self.object(from: data)
             .map { Weather(temperature: $0.main.temp, id: $0.sys.country) } 
     }
+    
+//    public func convert(data: Result<Data, ParserErrors>) -> Result<Weather, ParserErrors> {
+//        return self.object(from: data)
+//            .map { Weather(temperature: $0.main.temp, id: $0.sys.country) } 
+//    }
 }
 

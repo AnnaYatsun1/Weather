@@ -14,7 +14,7 @@ fileprivate struct Constant {
     static let mainUrl = "https://restcountries.eu/rest/v2/all"
 }
 
-class CountriesNetworkService: RequestService {
+class CountriesNetworkService: RequestServiceTypeForAlamofire {
 
     private let model = ArrayModel(values: [Country]())
     private let parser = ParserCountry()
@@ -36,12 +36,11 @@ class CountriesNetworkService: RequestService {
                                     }
                             }, 
                             failure: { _ in 
-                                    _  = self.databaseCountry.getObjects(type: CountryRLM.self).map { countryss in 
-                                        let contries = countryss as? [Country]
-                                        contries?.forEach { country in
-                                            Country(name: country.name, capital: country.capital, id: country.id)
+                                    _  = self.databaseCountry.getObjects(type: CountryRLM.self).map { contries in 
+                                        contries.forEach { country in
+                                            Country(name: country.name!, capital: country.capital!, id: country.id)
                                             
-                                        }
+                                    }
                                 }
                             }
                         )

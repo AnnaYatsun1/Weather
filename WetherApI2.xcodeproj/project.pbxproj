@@ -22,7 +22,10 @@
 		3F2DC76C221D682F000B5CD2 /* RLMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC76B221D682F000B5CD2 /* RLMModel.swift */; };
 		3F2DC76E221D7178000B5CD2 /* CountriesDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC76D221D7178000B5CD2 /* CountriesDatabaseService.swift */; };
 		3F2DC770221D888D000B5CD2 /* WeatherDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC76F221D888D000B5CD2 /* WeatherDatabaseService.swift */; };
-		3F6BF55821FB3F5100F15F2A /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BF55721FB3F5100F15F2A /* RequestService.swift */; };
+		3F2DC772221D98D8000B5CD2 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC771221D98D8000B5CD2 /* RequestService.swift */; };
+		3F2DC774221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC773221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift */; };
+		3F2DC776221D992D000B5CD2 /* ForRequestServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2DC775221D992D000B5CD2 /* ForRequestServiceType.swift */; };
+		3F6BF55821FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BF55721FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift */; };
 		3F970A8121FEF8490012F1B7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A8021FEF8490012F1B7 /* Model.swift */; };
 		3F970A8321FEFBD10012F1B7 /* ArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A8221FEFBD10012F1B7 /* ArrayModel.swift */; };
 		3F970A88220056100012F1B7 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F970A87220056100012F1B7 /* State.swift */; };
@@ -90,7 +93,10 @@
 		3F2DC76B221D682F000B5CD2 /* RLMModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMModel.swift; sourceTree = "<group>"; };
 		3F2DC76D221D7178000B5CD2 /* CountriesDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesDatabaseService.swift; sourceTree = "<group>"; };
 		3F2DC76F221D888D000B5CD2 /* WeatherDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDatabaseService.swift; sourceTree = "<group>"; };
-		3F6BF55721FB3F5100F15F2A /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		3F2DC771221D98D8000B5CD2 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		3F2DC773221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForRequestServiceTypeAlamofire.swift; sourceTree = "<group>"; };
+		3F2DC775221D992D000B5CD2 /* ForRequestServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForRequestServiceType.swift; sourceTree = "<group>"; };
+		3F6BF55721FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestServiceTypeForAlamofire.swift; sourceTree = "<group>"; };
 		3F970A8021FEF8490012F1B7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3F970A8221FEFBD10012F1B7 /* ArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayModel.swift; sourceTree = "<group>"; };
 		3F970A87220056100012F1B7 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
@@ -180,10 +186,11 @@
 		3F2DC769221D6576000B5CD2 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				3F6BF55721FB3F5100F15F2A /* RequestService.swift */,
+				3F6BF55721FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift */,
 				3F0FB11D220C63BE009BCEC4 /* WeatherNetworkService.swift */,
 				3F0FB11B220C6334009BCEC4 /* CountriesNetworkService.swift */,
 				3F0AFEAD221411B000319984 /* NetworkTask.swift */,
+				3F2DC771221D98D8000B5CD2 /* RequestService.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -389,6 +396,8 @@
 				3FD670C121ECA3F300D31897 /* Synchronizable.swift */,
 				3FD670DD21ECA41100D31897 /* ModelDelegate.swift */,
 				3F2DC760221D60DA000B5CD2 /* Provider.swift */,
+				3F2DC773221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift */,
+				3F2DC775221D992D000B5CD2 /* ForRequestServiceType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -572,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F970A8121FEF8490012F1B7 /* Model.swift in Sources */,
+				3F2DC776221D992D000B5CD2 /* ForRequestServiceType.swift in Sources */,
 				3FD670CD21ECA3F400D31897 /* UITableViewCell+AutoReuseIdentifier.swift in Sources */,
 				3FD670C421ECA3F400D31897 /* ObservableObject.Observer.swift in Sources */,
 				3FD670D621ECA3F400D31897 /* Cast.swift in Sources */,
@@ -584,6 +594,7 @@
 				3F2DC763221D6109000B5CD2 /* DataService.swift in Sources */,
 				3FD670D221ECA3F400D31897 /* Sequence+Array.swift in Sources */,
 				3F0AFEB02215876000319984 /* NetworkTask+Extensions.swift in Sources */,
+				3F2DC772221D98D8000B5CD2 /* RequestService.swift in Sources */,
 				3FD670DA21ECA3F400D31897 /* Cancellable.swift in Sources */,
 				3FD670C321ECA3F400D31897 /* CancellableObject.swift in Sources */,
 				3FD66FAB21ECA11500D31897 /* AppDelegate.swift in Sources */,
@@ -594,9 +605,10 @@
 				3FD670E521ECBD9900D31897 /* Parser.swift in Sources */,
 				3F0FB11A220C6220009BCEC4 /* ParserWeather.swift in Sources */,
 				3FD670C521ECA3F400D31897 /* Atomic.swift in Sources */,
+				3F2DC774221D9908000B5CD2 /* ForRequestServiceTypeAlamofire.swift in Sources */,
 				3FD670C721ECA3F400D31897 /* RootViewRepresentable.swift in Sources */,
 				3FD670D021ECA3F400D31897 /* UIView+Sizes.swift in Sources */,
-				3F6BF55821FB3F5100F15F2A /* RequestService.swift in Sources */,
+				3F6BF55821FB3F5100F15F2A /* RequestServiceTypeForAlamofire.swift in Sources */,
 				3FD670DB21ECA3F400D31897 /* Identifiable.swift in Sources */,
 				3FD670DE21ECA41100D31897 /* ModelDelegate.swift in Sources */,
 				3FD670D821ECA3F400D31897 /* Weakify.swift in Sources */,
